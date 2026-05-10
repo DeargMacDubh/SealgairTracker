@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>Shield Blueprint — Clan Sealgair</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        iron: {
+                            900: '#1a1a1a',
+                            800: '#1e1e1e',
+                            700: '#262626',
+                            600: '#2C2C2C',
+                            500: '#3a3a3a',
+                        },
+                        saffron: '#D4A017',
+                        cream: '#F5F0E1',
+                        woad: '#2B4570',
+                        russet: '#8B5E3C',
+                        madder: '#A52A2A',
+                    },
+                    fontFamily: {
+                        mono: ['IBM Plex Mono', 'monospace'],
+                        body: ['system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            background-color: #2C2C2C;
+            color: #F5F0E1;
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
+        .section-heading {
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #D4A017;
+        }
+        .blueprint-line {
+            stroke: #D4A017;
+            fill: none;
+            stroke-width: 0.75;
+        }
+        .blueprint-line-thin {
+            stroke: #D4A017;
+            fill: none;
+            stroke-width: 0.5;
+            opacity: 0.6;
+        }
+        .blueprint-line-dim {
+            stroke: #8B5E3C;
+            fill: none;
+            stroke-width: 0.5;
+            stroke-dasharray: 4 3;
+        }
+        .dim-line {
+            stroke: #8B5E3C;
+            fill: none;
+            stroke-width: 0.5;
+        }
+        .dim-text {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9px;
+            fill: #F5F0E1;
+        }
+        .label-text {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            fill: #F5F0E1;
+        }
+        .label-text-sm {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 8px;
+            fill: #F5F0E1;
+        }
+        .svg-title {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 13px;
+            fill: #D4A017;
+            letter-spacing: 0.12em;
+            font-weight: 600;
+        }
+        .hatching {
+            stroke: #3a3a3a;
+            stroke-width: 0.3;
+            fill: none;
+        }
+        .tab-btn {
+            transition: all 0.25s ease;
+            position: relative;
+            border-radius: 4px 4px 0 0;
+        }
+        .tab-btn.active {
+            background: #2B4570;
+            color: #D4A017;
+        }
+        .tab-btn:not(.active) {
+            background: #1e1e1e;
+            color: rgba(245,240,225,0.7);
+        }
+        .tab-btn:not(.active):hover {
+            background: #2B4570;
+            color: #F5F0E1;
+        }
+        .tab-panel {
+            display: none;
+        }
+        .tab-panel.active {
+            display: block;
+        }
+        .stamp-box {
+            border: 1.5px solid #A52A2A;
+            padding: 6px 14px;
+            font-size: 9px;
+            letter-spacing: 0.18em;
+            color: #A52A2A;
+            text-transform: uppercase;
+            font-family: 'IBM Plex Mono', monospace;
+            position: relative;
+        }
+        .stamp-box::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border: 0.5px solid rgba(165,42,42,0.4);
+        }
+        .construction-step {
+            border-left: 1px solid #3a3a3a;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .construction-step::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border: 1.5px solid #D4A017;
+            background: #1e1e1e;
+            border-radius: 50%;
+            position: absolute;
+            left: -5.5px;
+            top: 2px;
+        }
+        .material-row:nth-child(even) {
+            background: #262626;
+        }
+        .material-row:nth-child(odd) {
+            background: #1e1e1e;
+        }
+        .content-card {
+            background: #1e1e1e;
+            border: 1px solid #3a3a3a;
+            border-radius: 6px;
+            padding: 1.5rem;
+        }
+        @media print {
+            nav, footer, .no-print { display: none !important; }
+            body { background: #fff; color: #000; }
+        }
+        .grain-line {
+            stroke: #3a3a3a;
+            stroke-width: 0.25;
+        }
+        .site-nav-link {
+            transition: color 0.2s ease;
+        }
+        .site-nav-link:hover {
+            color: #D4A017;
+        }
+        .site-nav-link.active-page {
+            color: #D4A017;
+            border-bottom: 2px solid #D4A017;
+            padding-bottom: 2px;
+        }
+    </style>
+</head>
+<body data-id="0">
+    <app-icon data-id="1" hidden data-icon="shield" data-palette="Dark"></app-icon>
+
+    <!-- Site-wide Navigation Bar -->
+    <nav data-id="2" class="sticky top-0 z-50 bg-iron-900 border-b border-iron-500" style="height:56px;">
+        <div data-id="3" class="max-w-6xl mx-auto px-4 md:px-8 h-full flex items-center justify-between">
+            <!-- Left: Brand -->
+            <a data-id="4" href="https://deargmacdubh.github.io/SealgairTracker/" class="flex items-center gap-2 text-saffron font-semibold text-lg tracking-wide no-underline" style="text-decoration:none;">
+                <span data-id="5">🦅</span>
+                <span data-id="6">Sealgair</span>
+            </a>
+            <!-- Center: Desktop nav links -->
+            <div data-id="7" class="hidden md:flex items-center gap-6 text-sm">
+                <a data-id="8" href="https://deargmacdubh.github.io/SealgairTracker/" class="site-nav-link" style="color:rgba(245,240,225,0.7);text-decoration:none;">Kit Ledger</a>
+                <a data-id="9" href="#" class="site-nav-link active-page" style="text-decoration:none;">Shield Blueprint</a>
+                <a data-id="10" href="https://deargmacdubh.github.io/SealgairTracker/#dashboard-section" class="site-nav-link" style="color:rgba(245,240,225,0.7);text-decoration:none;">Dashboard</a>
+                <a data-id="11" href="https://deargmacdubh.github.io/SealgairTracker/#budget-section" class="site-nav-link" style="color:rgba(245,240,225,0.7);text-decoration:none;">Budget</a>
+            </div>
+            <!-- Right: Motto (desktop) -->
+            <p data-id="12" class="hidden md:block text-sm italic" style="color:rgba(245,240,225,0.5);">Eadar Nèamh is Ifrinn</p>
+            <!-- Mobile hamburger -->
+            <button data-id="13" id="site-mobile-btn" class="md:hidden p-2 text-cream">
+                <span data-id="14" style="font-size:1.5rem;">☰</span>
+            </button>
+        </div>
+        <!-- Mobile dropdown menu -->
+        <div data-id="15" id="site-mobile-menu" class="hidden md:hidden bg-iron-900 border-b border-iron-500 px-4 py-4 flex flex-col gap-3">
+            <a data-id="16" href="https://deargmacdubh.github.io/SealgairTracker/" class="text-sm py-2 px-3 rounded" style="color:rgba(245,240,225,0.7);text-decoration:none;">Kit Ledger</a>
+            <a data-id="17" href="#" class="text-sm py-2 px-3 rounded text-saffron font-semibold" style="text-decoration:none;background:#2B4570;">Shield Blueprint</a>
+            <a data-id="18" href="https://deargmacdubh.github.io/SealgairTracker/#dashboard-section" class="text-sm py-2 px-3 rounded" style="color:rgba(245,240,225,0.7);text-decoration:none;">Dashboard</a>
+            <a data-id="19" href="https://deargmacdubh.github.io/SealgairTracker/#budget-section" class="text-sm py-2 px-3 rounded" style="color:rgba(245,240,225,0.7);text-decoration:none;">Budget</a>
+            <p data-id="20" class="text-xs italic mt-2 px-3" style="color:rgba(245,240,225,0.4);">Eadar Nèamh is Ifrinn</p>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header data-id="21" class="pt-8 pb-6 px-4 md:px-8">
+        <div data-id="22" class="max-w-6xl mx-auto text-center">
+            <div data-id="23" class="flex flex-col items-center gap-2">
+                <p data-id="24" class="text-3xl">⚔️</p>
+                <h1 data-id="25" class="section-heading text-xl md:text-2xl font-semibold">Clan Sealgair — Shield Craftsman's Blueprint</h1>
+                <p data-id="26" class="text-sm italic" style="color:rgba(245,240,225,0.7);">Round Shield · Norse-Gaelic Pattern · c. 1130–1164 CE</p>
+                <p data-id="27" class="text-sm italic" style="color:rgba(245,240,225,0.55);">Knoydart, Scotland · Somerled's Era</p>
+                <div data-id="28" class="stamp-box mt-3">Craftsman's Blueprint · Archival Grade</div>
+            </div>
+            <hr data-id="29" class="mt-6 border-0" style="height:1px;background:#D4A017;opacity:0.4;">
+        </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav data-id="30" class="sticky z-40 bg-iron-600 no-print" style="top:56px;">
+        <div data-id="31" class="max-w-6xl mx-auto px-4 md:px-8" style="border-bottom:1px solid #D4A017;">
+            <!-- Desktop tabs -->
+            <div data-id="32" class="hidden md:flex gap-1">
+                <button data-id="33" class="tab-btn active px-4 py-3 font-body text-xs tracking-widest font-semibold" data-tab="front">Front View</button>
+                <button data-id="34" class="tab-btn px-4 py-3 font-body text-xs tracking-widest font-semibold" data-tab="back">Back View</button>
+                <button data-id="35" class="tab-btn px-4 py-3 font-body text-xs tracking-widest font-semibold" data-tab="cross">Cross-Section</button>
+                <button data-id="36" class="tab-btn px-4 py-3 font-body text-xs tracking-widest font-semibold" data-tab="boss">Boss Detail</button>
+                <button data-id="37" class="tab-btn px-4 py-3 font-body text-xs tracking-widest font-semibold" data-tab="materials">Materials</button>
+                <button data-id="38" class="tab-btn px-4 py-3 font-body text-xs tracking-widest font-semibold" data-tab="construction">Construction</button>
+            </div>
+            <!-- Mobile menu button -->
+            <div data-id="39" class="md:hidden flex items-center justify-between py-3">
+                <span data-id="40" id="current-tab-label-m2n4" class="font-body text-xs tracking-widest text-saffron font-semibold">FRONT VIEW</span>
+                <button data-id="41" id="mobile-tab-btn-r8k3" class="p-2">
+                    <i data-id="42" data-lucide="menu" class="w-5 h-5 text-cream"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu overlay -->
+        <div data-id="43" id="mobile-tab-menu-j5w7" class="hidden fixed inset-0 bg-iron-900/95 z-50 flex flex-col p-6 md:hidden">
+            <button data-id="44" id="mobile-tab-close-a1b2" class="self-end p-2 mb-6">
+                <i data-id="45" data-lucide="x" class="w-6 h-6 text-cream"></i>
+            </button>
+            <div data-id="46" class="flex flex-col gap-2">
+                <button data-id="47" class="mobile-tab-item text-left px-4 py-3 font-body text-sm tracking-widest text-saffron border border-iron-500 rounded bg-woad" data-tab="front">Front View</button>
+                <button data-id="48" class="mobile-tab-item text-left px-4 py-3 font-body text-sm tracking-widest border border-iron-500 rounded bg-iron-800" style="color:rgba(245,240,225,0.7);" data-tab="back">Back View</button>
+                <button data-id="49" class="mobile-tab-item text-left px-4 py-3 font-body text-sm tracking-widest border border-iron-500 rounded bg-iron-800" style="color:rgba(245,240,225,0.7);" data-tab="cross">Cross-Section</button>
+                <button data-id="50" class="mobile-tab-item text-left px-4 py-3 font-body text-sm tracking-widest border border-iron-500 rounded bg-iron-800" style="color:rgba(245,240,225,0.7);" data-tab="boss">Boss Detail</button>
+                <button data-id="51" class="mobile-tab-item text-left px-4 py-3 font-body text-sm tracking-widest border border-iron-500 rounded bg-iron-800" style="color:rgba(245,240,225,0.7);" data-tab="materials">Materials</button>
+                <button data-id="52" class="mobile-tab-item text-left px-4 py-3 font-body text-sm tracking-widest border border-iron-500 rounded bg-iron-800" style="color:rgba(245,240,225,0.7);" data-tab="construction">Construction</button>
+            </div>
+        </div>
+    </nav>
+
+    <main data-id="53" class="max-w-6xl mx-auto px-4 md:px-8 py-8">
+
+        <!-- TAB 1: FRONT VIEW -->
+        <section data-id="54" id="panel-front" class="tab-panel active">
+            <div data-id="55" class="text-center mb-6">
+                <h2 data-id="56" class="section-heading text-lg tracking-widest">Front Face</h2>
+                <p data-id="57" class="font-body text-xs mt-1" style="color:rgba(245,240,225,0.7);">Shield face with hide covering, paint scheme & boss</p>
+            </div>
+            <div data-id="58" class="flex justify-center">
+                <div data-id="59" class="content-card">
+                <svg data-id="60" id="front-view-svg-q2w4" viewBox="0 0 600 620" class="w-full max-w-xl" xmlns="http://www.w3.org/2000/svg">
+                    <defs data-id="61">
+                        <marker data-id="62" id="arrow-start" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
+                            <path data-id="63" d="M8,0 L0,3 L8,6" fill="none" stroke="#8B5E3C" stroke-width="0.8"/>
+                        </marker>
+                        <marker data-id="64" id="arrow-end" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                            <path data-id="65" d="M0,0 L8,3 L0,6" fill="none" stroke="#8B5E3C" stroke-width="0.8"/>
+                        </marker>
+                        <clipPath data-id="66" id="shield-clip">
+                            <circle data-id="67" cx="300" cy="300" r="194"/>
+                        </clipPath>
+                        <clipPath data-id="68" id="q-ul">
+                            <rect data-id="69" x="0" y="0" width="300" height="300"/>
+                        </clipPath>
+                        <clipPath data-id="70" id="q-ur">
+                            <rect data-id="71" x="300" y="0" width="300" height="300"/>
+                        </clipPath>
+                        <clipPath data-id="72" id="q-ll">
+                            <rect data-id="73" x="0" y="300" width="300" height="300"/>
+                        </clipPath>
+                        <clipPath data-id="74" id="q-lr">
+                            <rect data-id="75" x="300" y="300" width="300" height="300"/>
+                        </clipPath>
+                    </defs>
+
+                    <!-- Title -->
+                    <text data-id="76" x="300" y="22" text-anchor="middle" class="svg-title">FRONT FACE — SHIELD OBVERSE</text>
+
+                    <!-- Rawhide rim -->
+                    <circle data-id="77" cx="300" cy="300" r="198" fill="none" stroke="#D4A017" stroke-width="8" opacity="0.4"/>
+                    <circle data-id="78" cx="300" cy="300" r="194" fill="none" stroke="#D4A017" stroke-width="1"/>
+
+                    <!-- Quadrant paint — UL & LR = red, UR & LL = woad blue -->
+                    <g data-id="79" clip-path="url(#shield-clip)">
+                        <g data-id="80" clip-path="url(#q-ul)">
+                            <circle data-id="81" cx="300" cy="300" r="193" fill="#8B0000" opacity="0.35"/>
+                        </g>
+                        <g data-id="82" clip-path="url(#q-ur)">
+                            <circle data-id="83" cx="300" cy="300" r="193" fill="#2B4570" opacity="0.35"/>
+                        </g>
+                        <g data-id="84" clip-path="url(#q-ll)">
+                            <circle data-id="85" cx="300" cy="300" r="193" fill="#2B4570" opacity="0.35"/>
+                        </g>
+                        <g data-id="86" clip-path="url(#q-lr)">
+                            <circle data-id="87" cx="300" cy="300" r="193" fill="#8B0000" opacity="0.35"/>
+                        </g>
+                    </g>
+
+                    <!-- Quadrant dividing lines -->
+                    <line data-id="88" x1="300" y1="106" x2="300" y2="494" class="blueprint-line" opacity="0.6"/>
+                    <line data-id="89" x1="106" y1="300" x2="494" y2="300" class="blueprint-line" opacity="0.6"/>
+
+                    <!-- Knotwork triskele -->
+                    <g data-id="90" transform="translate(300,300)" fill="none" stroke="#D4A017" stroke-width="1" opacity="0.7">
+                        <path data-id="91" d="M0,-20 C10,-20 18,-10 18,0 C18,5 14,10 8,12 C4,8 0,0 0,0 C0,0 -4,8 -8,12 C-14,10 -18,5 -18,0 C-18,-10 -10,-20 0,-20Z"/>
+                        <path data-id="92" d="M17.3,10 C12.3,18.7 2,22 -5,20 C-9,19 -12,15 -13,9 C-7,9 0,0 0,0 C0,0 8,8 13,9 C18,7 22,2 17.3,10Z"/>
+                        <path data-id="93" d="M-17.3,10 C-12.3,18.7 -2,22 5,20 C9,19 12,15 13,9 C7,9 0,0 0,0 C0,0 -8,8 -13,9 C-18,7 -22,2 -17.3,10Z"/>
+                    </g>
+
+                    <!-- Plank lines -->
+                    <g data-id="94" clip-path="url(#shield-clip)" opacity="0.35">
+                        <line data-id="95" x1="284" y1="106" x2="284" y2="494" class="blueprint-line-thin"/>
+                        <line data-id="96" x1="316" y1="106" x2="316" y2="494" class="blueprint-line-thin"/>
+                        <line data-id="97" x1="254" y1="108" x2="254" y2="492" class="blueprint-line-thin"/>
+                        <line data-id="98" x1="346" y1="108" x2="346" y2="492" class="blueprint-line-thin"/>
+                        <line data-id="99" x1="218" y1="115" x2="218" y2="485" class="blueprint-line-thin"/>
+                        <line data-id="100" x1="382" y1="115" x2="382" y2="485" class="blueprint-line-thin"/>
+                        <g data-id="101" class="grain-line" opacity="0.5">
+                            <line data-id="102" x1="230" y1="180" x2="270" y2="180"/><line data-id="103" x1="230" y1="220" x2="270" y2="220"/>
+                            <line data-id="104" x1="230" y1="260" x2="270" y2="260"/><line data-id="105" x1="230" y1="340" x2="270" y2="340"/>
+                            <line data-id="106" x1="230" y1="380" x2="270" y2="380"/><line data-id="107" x1="230" y1="420" x2="270" y2="420"/>
+                            <line data-id="108" x1="330" y1="180" x2="370" y2="180"/><line data-id="109" x1="330" y1="220" x2="370" y2="220"/>
+                            <line data-id="110" x1="330" y1="260" x2="370" y2="260"/><line data-id="111" x1="330" y1="340" x2="370" y2="340"/>
+                            <line data-id="112" x1="330" y1="380" x2="370" y2="380"/><line data-id="113" x1="330" y1="420" x2="370" y2="420"/>
+                            <line data-id="114" x1="130" y1="250" x2="200" y2="250"/><line data-id="115" x1="130" y1="300" x2="200" y2="300"/>
+                            <line data-id="116" x1="130" y1="350" x2="200" y2="350"/>
+                            <line data-id="117" x1="400" y1="250" x2="470" y2="250"/><line data-id="118" x1="400" y1="300" x2="470" y2="300"/>
+                            <line data-id="119" x1="400" y1="350" x2="470" y2="350"/>
+                        </g>
+                    </g>
+
+                    <!-- Rim tack marks -->
+                    <g data-id="120" fill="#D4A017" opacity="0.4">
+                        <circle data-id="121" cx="300" cy="107" r="1.5"/><circle data-id="122" cx="330" cy="108" r="1.5"/><circle data-id="123" cx="360" cy="112" r="1.5"/>
+                        <circle data-id="124" cx="388" cy="119" r="1.5"/><circle data-id="125" cx="413" cy="130" r="1.5"/><circle data-id="126" cx="435" cy="145" r="1.5"/>
+                        <circle data-id="127" cx="453" cy="163" r="1.5"/><circle data-id="128" cx="468" cy="184" r="1.5"/><circle data-id="129" cx="479" cy="208" r="1.5"/>
+                        <circle data-id="130" cx="487" cy="234" r="1.5"/><circle data-id="131" cx="492" cy="261" r="1.5"/><circle data-id="132" cx="494" cy="290" r="1.5"/>
+                        <circle data-id="133" cx="494" cy="310" r="1.5"/><circle data-id="134" cx="492" cy="339" r="1.5"/><circle data-id="135" cx="487" cy="366" r="1.5"/>
+                        <circle data-id="136" cx="479" cy="392" r="1.5"/><circle data-id="137" cx="468" cy="416" r="1.5"/><circle data-id="138" cx="453" cy="437" r="1.5"/>
+                        <circle data-id="139" cx="435" cy="455" r="1.5"/><circle data-id="140" cx="413" cy="470" r="1.5"/><circle data-id="141" cx="388" cy="481" r="1.5"/>
+                        <circle data-id="142" cx="360" cy="488" r="1.5"/><circle data-id="143" cx="330" cy="492" r="1.5"/><circle data-id="144" cx="300" cy="493" r="1.5"/>
+                        <circle data-id="145" cx="270" cy="492" r="1.5"/><circle data-id="146" cx="240" cy="488" r="1.5"/><circle data-id="147" cx="212" cy="481" r="1.5"/>
+                        <circle data-id="148" cx="187" cy="470" r="1.5"/><circle data-id="149" cx="165" cy="455" r="1.5"/><circle data-id="150" cx="147" cy="437" r="1.5"/>
+                        <circle data-id="151" cx="132" cy="416" r="1.5"/><circle data-id="152" cx="121" cy="392" r="1.5"/><circle data-id="153" cx="113" cy="366" r="1.5"/>
+                        <circle data-id="154" cx="108" cy="339" r="1.5"/><circle data-id="155" cx="106" cy="310" r="1.5"/><circle data-id="156" cx="106" cy="290" r="1.5"/>
+                        <circle data-id="157" cx="108" cy="261" r="1.5"/><circle data-id="158" cx="113" cy="234" r="1.5"/><circle data-id="159" cx="121" cy="208" r="1.5"/>
+                        <circle data-id="160" cx="132" cy="184" r="1.5"/><circle data-id="161" cx="147" cy="163" r="1.5"/><circle data-id="162" cx="165" cy="145" r="1.5"/>
+                        <circle data-id="163" cx="187" cy="130" r="1.5"/><circle data-id="164" cx="212" cy="119" r="1.5"/><circle data-id="165" cx="240" cy="112" r="1.5"/>
+                        <circle data-id="166" cx="270" cy="108" r="1.5"/>
+                    </g>
+
+                    <!-- Boss flange ring -->
+                    <circle data-id="167" cx="300" cy="300" r="60" fill="none" stroke="#D4A017" stroke-width="1.5" opacity="0.6"/>
+                    <!-- Boss dome -->
+                    <circle data-id="168" cx="300" cy="300" r="34" fill="none" stroke="#D4A017" stroke-width="1.5"/>
+                    <!-- Boss dome hatching -->
+                    <g data-id="169" opacity="0.3" clip-path="url(#boss-dome-clip)">
+                        <defs data-id="170"><clipPath data-id="171" id="boss-dome-clip"><circle data-id="172" cx="300" cy="300" r="33"/></clipPath></defs>
+                        <line data-id="173" x1="275" y1="275" x2="325" y2="325" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="174" x1="280" y1="270" x2="330" y2="320" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="175" x1="285" y1="267" x2="333" y2="315" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="176" x1="290" y1="267" x2="333" y2="310" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="177" x1="270" y1="280" x2="320" y2="330" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="178" x1="267" y1="285" x2="315" y2="333" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="179" x1="267" y1="290" x2="310" y2="333" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="180" x1="270" y1="295" x2="305" y2="330" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="181" x1="273" y1="300" x2="300" y2="327" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="182" x1="295" y1="267" x2="333" y2="305" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="183" x1="300" y1="270" x2="330" y2="300" stroke="#D4A017" stroke-width="0.4"/>
+                    </g>
+
+                    <!-- Boss rivet marks -->
+                    <g data-id="184" stroke="#D4A017" stroke-width="1" fill="none">
+                        <g data-id="185" transform="translate(300,240)"><line data-id="186" x1="-3" y1="-3" x2="3" y2="3"/><line data-id="187" x1="3" y1="-3" x2="-3" y2="3"/></g>
+                        <g data-id="188" transform="translate(357,281)"><line data-id="189" x1="-3" y1="-3" x2="3" y2="3"/><line data-id="190" x1="3" y1="-3" x2="-3" y2="3"/></g>
+                        <g data-id="191" transform="translate(335,353)"><line data-id="192" x1="-3" y1="-3" x2="3" y2="3"/><line data-id="193" x1="3" y1="-3" x2="-3" y2="3"/></g>
+                        <g data-id="194" transform="translate(265,353)"><line data-id="195" x1="-3" y1="-3" x2="3" y2="3"/><line data-id="196" x1="3" y1="-3" x2="-3" y2="3"/></g>
+                        <g data-id="197" transform="translate(243,281)"><line data-id="198" x1="-3" y1="-3" x2="3" y2="3"/><line data-id="199" x1="3" y1="-3" x2="-3" y2="3"/></g>
+                    </g>
+
+                    <!-- Dimension: Overall diameter -->
+                    <line data-id="200" x1="80" y1="106" x2="80" y2="494" class="dim-line" marker-start="url(#arrow-start)" marker-end="url(#arrow-end)"/>
+                    <line data-id="201" x1="80" y1="106" x2="100" y2="106" class="dim-line" opacity="0.5"/>
+                    <line data-id="202" x1="80" y1="494" x2="100" y2="494" class="dim-line" opacity="0.5"/>
+                    <text data-id="203" x="76" y="310" text-anchor="end" class="dim-text" transform="rotate(-90,76,310)">⌀ 30 in</text>
+
+                    <!-- Dimension: Boss dome diameter -->
+                    <line data-id="204" x1="266" y1="550" x2="334" y2="550" class="dim-line" marker-start="url(#arrow-start)" marker-end="url(#arrow-end)"/>
+                    <line data-id="205" x1="266" y1="300" x2="266" y2="555" class="dim-line" stroke-dasharray="2 3" opacity="0.3"/>
+                    <line data-id="206" x1="334" y1="300" x2="334" y2="555" class="dim-line" stroke-dasharray="2 3" opacity="0.3"/>
+                    <text data-id="207" x="300" y="546" text-anchor="middle" class="dim-text">⌀ 5-1/8 in dome</text>
+
+                    <!-- Dimension: Flange diameter -->
+                    <line data-id="208" x1="240" y1="572" x2="360" y2="572" class="dim-line" marker-start="url(#arrow-start)" marker-end="url(#arrow-end)"/>
+                    <line data-id="209" x1="240" y1="300" x2="240" y2="577" class="dim-line" stroke-dasharray="2 3" opacity="0.3"/>
+                    <line data-id="210" x1="360" y1="300" x2="360" y2="577" class="dim-line" stroke-dasharray="2 3" opacity="0.3"/>
+                    <text data-id="211" x="300" y="568" text-anchor="middle" class="dim-text">⌀ 9-1/16 in flange</text>
+
+                    <!-- Annotation: Paint note -->
+                    <line data-id="212" x1="380" y1="180" x2="500" y2="120" class="dim-line" opacity="0.4"/>
+                    <text data-id="213" x="505" y="118" class="label-text-sm">Woad blue (2B4570)</text>
+                    <line data-id="214" x1="220" y1="180" x2="100" y2="120" class="dim-line" opacity="0.4"/>
+                    <text data-id="215" x="25" y="118" class="label-text-sm">Red ochre (Fe₂O₃)</text>
+
+                    <!-- Annotation: Rim -->
+                    <line data-id="216" x1="446" y1="156" x2="530" y2="80" class="dim-line" opacity="0.4"/>
+                    <text data-id="217" x="534" y="78" class="label-text-sm">Rawhide rim</text>
+                    <text data-id="218" x="534" y="88" class="label-text-sm">1 in × 5/32 in</text>
+
+                    <!-- Annotation: Tacks -->
+                    <line data-id="219" x1="468" y1="190" x2="530" y2="140" class="dim-line" opacity="0.4"/>
+                    <text data-id="220" x="534" y="140" class="label-text-sm">Iron tacks @1-9/16 in</text>
+
+                    <!-- Spec block -->
+                    <text data-id="221" x="520" y="580" class="label-text-sm">SCALE: ~1:2</text>
+                    <text data-id="222" x="520" y="592" class="label-text-sm">UNIT: IMPERIAL (in)</text>
+                    <text data-id="223" x="520" y="604" class="label-text-sm">7 PLANKS — BUTT JOIN</text>
+                    <text data-id="224" x="520" y="616" class="label-text-sm">HIDE BOTH FACES</text>
+                </svg>
+                </div>
+            </div>
+            <div data-id="225" class="mt-6 content-card max-w-xl mx-auto">
+                <p data-id="226" class="font-mono text-xs leading-relaxed" style="color:rgba(245,240,225,0.7);">
+                    <span data-id="227" class="text-saffron font-semibold">NOTE:</span> Paint scheme follows Norse-Gaelic heraldic convention — quadrant division with opposing fields. Upper-left & lower-right: red ochre (iron oxide Fe₂O₃ in linseed oil binder). Upper-right & lower-left: woad blue (historically accurate for Norse-Gaelic). Central knotwork triskele incised into hide before painting. Boss rivets peened flush with flange face.
+                </p>
+            </div>
+        </section>
+
+        <!-- TAB 2: BACK VIEW -->
+        <section data-id="228" id="panel-back" class="tab-panel">
+            <div data-id="229" class="text-center mb-6">
+                <h2 data-id="230" class="section-heading text-lg tracking-widest">Back / Grip Face</h2>
+                <p data-id="231" class="font-body text-xs mt-1" style="color:rgba(245,240,225,0.7);">Interior showing grip bar, strap system & plank layout</p>
+            </div>
+            <div data-id="232" class="flex justify-center">
+                <div data-id="233" class="content-card">
+                <svg data-id="234" id="back-view-svg-h7t3" viewBox="0 0 600 600" class="w-full max-w-xl" xmlns="http://www.w3.org/2000/svg">
+                    <defs data-id="235">
+                        <marker data-id="236" id="arr-s2" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path data-id="237" d="M8,0 L0,3 L8,6" fill="none" stroke="#8B5E3C" stroke-width="0.8"/></marker>
+                        <marker data-id="238" id="arr-e2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path data-id="239" d="M0,0 L8,3 L0,6" fill="none" stroke="#8B5E3C" stroke-width="0.8"/></marker>
+                        <clipPath data-id="240" id="shield-clip-2"><circle data-id="241" cx="300" cy="290" r="194"/></clipPath>
+                    </defs>
+
+                    <text data-id="242" x="300" y="22" text-anchor="middle" class="svg-title">BACK / GRIP FACE</text>
+
+                    <circle data-id="243" cx="300" cy="290" r="198" fill="none" stroke="#D4A017" stroke-width="8" opacity="0.25"/>
+                    <circle data-id="244" cx="300" cy="290" r="194" fill="none" stroke="#D4A017" stroke-width="1"/>
+
+                    <g data-id="245" clip-path="url(#shield-clip-2)" opacity="0.4">
+                        <line data-id="246" x1="284" y1="96" x2="284" y2="484" class="blueprint-line-thin"/>
+                        <line data-id="247" x1="316" y1="96" x2="316" y2="484" class="blueprint-line-thin"/>
+                        <line data-id="248" x1="254" y1="98" x2="254" y2="482" class="blueprint-line-thin"/>
+                        <line data-id="249" x1="346" y1="98" x2="346" y2="482" class="blueprint-line-thin"/>
+                        <line data-id="250" x1="218" y1="105" x2="218" y2="475" class="blueprint-line-thin"/>
+                        <line data-id="251" x1="382" y1="105" x2="382" y2="475" class="blueprint-line-thin"/>
+                        <g data-id="252" class="grain-line" opacity="0.5">
+                            <line data-id="253" x1="230" y1="170" x2="270" y2="170"/><line data-id="254" x1="230" y1="210" x2="270" y2="210"/>
+                            <line data-id="255" x1="230" y1="370" x2="270" y2="370"/><line data-id="256" x1="230" y1="410" x2="270" y2="410"/>
+                            <line data-id="257" x1="330" y1="170" x2="370" y2="170"/><line data-id="258" x1="330" y1="210" x2="370" y2="210"/>
+                            <line data-id="259" x1="330" y1="370" x2="370" y2="370"/><line data-id="260" x1="330" y1="410" x2="370" y2="410"/>
+                            <line data-id="261" x1="140" y1="260" x2="200" y2="260"/><line data-id="262" x1="140" y1="310" x2="200" y2="310"/>
+                            <line data-id="263" x1="400" y1="260" x2="460" y2="260"/><line data-id="264" x1="400" y1="310" x2="460" y2="310"/>
+                        </g>
+                    </g>
+
+                    <circle data-id="265" cx="300" cy="290" r="60" fill="none" stroke="#D4A017" stroke-width="1.5" opacity="0.5" stroke-dasharray="4 2"/>
+                    <circle data-id="266" cx="300" cy="290" r="29" fill="none" stroke="#D4A017" stroke-width="1"/>
+                    <text data-id="267" x="300" y="293" text-anchor="middle" class="label-text-sm" opacity="0.6">⌀ 4-3/8 in</text>
+
+                    <rect data-id="268" x="222" y="284" width="156" height="12" rx="2" fill="none" stroke="#D4A017" stroke-width="1.5"/>
+                    <g data-id="269" opacity="0.35">
+                        <line data-id="270" x1="232" y1="284" x2="238" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="271" x1="242" y1="284" x2="248" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="272" x1="252" y1="284" x2="258" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="273" x1="262" y1="284" x2="268" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="274" x1="272" y1="284" x2="278" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="275" x1="322" y1="284" x2="328" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="276" x1="332" y1="284" x2="338" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="277" x1="342" y1="284" x2="348" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="278" x1="352" y1="284" x2="358" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="279" x1="362" y1="284" x2="368" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="280" x1="238" y1="284" x2="232" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="281" x1="248" y1="284" x2="242" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="282" x1="258" y1="284" x2="252" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="283" x1="268" y1="284" x2="262" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="284" x1="278" y1="284" x2="272" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="285" x1="328" y1="284" x2="322" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="286" x1="338" y1="284" x2="332" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="287" x1="348" y1="284" x2="342" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="288" x1="358" y1="284" x2="352" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="289" x1="368" y1="284" x2="362" y2="296" stroke="#D4A017" stroke-width="0.4"/>
+                    </g>
+
+                    <circle data-id="290" cx="226" cy="290" r="4" fill="none" stroke="#D4A017" stroke-width="1"/>
+                    <circle data-id="291" cx="226" cy="290" r="1.5" fill="#D4A017"/>
+                    <circle data-id="292" cx="374" cy="290" r="4" fill="none" stroke="#D4A017" stroke-width="1"/>
+                    <circle data-id="293" cx="374" cy="290" r="1.5" fill="#D4A017"/>
+
+                    <ellipse data-id="294" cx="226" cy="300" rx="5" ry="8" fill="none" stroke="#8B5E3C" stroke-width="1"/>
+                    <ellipse data-id="295" cx="374" cy="300" rx="5" ry="8" fill="none" stroke="#8B5E3C" stroke-width="1"/>
+
+                    <path data-id="296" d="M226,308 C226,400 374,400 374,308" fill="none" stroke="#D4A017" stroke-width="2" stroke-dasharray="6 3" opacity="0.6"/>
+                    <text data-id="297" x="300" y="380" text-anchor="middle" class="label-text-sm">Carrying strap</text>
+                    <text data-id="298" x="300" y="392" text-anchor="middle" class="label-text-sm">35-1/2 in × 1-3/16 in leather</text>
+
+                    <line data-id="299" x1="222" y1="260" x2="378" y2="260" class="dim-line" marker-start="url(#arr-s2)" marker-end="url(#arr-e2)"/>
+                    <text data-id="300" x="300" y="256" text-anchor="middle" class="dim-text">11-3/4 in grip bar</text>
+
+                    <line data-id="301" x1="300" y1="240" x2="300" y2="284" class="dim-line" opacity="0.4" stroke-dasharray="2 2"/>
+
+                    <g data-id="302" fill="none" stroke="#8B5E3C" stroke-width="0.8" opacity="0.6">
+                        <circle data-id="303" cx="300" cy="230" r="3"/><circle data-id="304" cx="300" cy="230" r="1" fill="#8B5E3C"/>
+                        <circle data-id="305" cx="357" cy="271" r="3"/><circle data-id="306" cx="357" cy="271" r="1" fill="#8B5E3C"/>
+                        <circle data-id="307" cx="335" cy="343" r="3"/><circle data-id="308" cx="335" cy="343" r="1" fill="#8B5E3C"/>
+                        <circle data-id="309" cx="265" cy="343" r="3"/><circle data-id="310" cx="265" cy="343" r="1" fill="#8B5E3C"/>
+                        <circle data-id="311" cx="243" cy="271" r="3"/><circle data-id="312" cx="243" cy="271" r="1" fill="#8B5E3C"/>
+                    </g>
+
+                    <line data-id="313" x1="226" y1="290" x2="120" y2="220" class="dim-line" opacity="0.4"/>
+                    <text data-id="314" x="40" y="216" class="label-text-sm">Grip rivet + washer</text>
+                    <text data-id="315" x="40" y="228" class="label-text-sm">(peened on face side)</text>
+
+                    <line data-id="316" x1="226" y1="304" x2="120" y2="350" class="dim-line" opacity="0.4"/>
+                    <text data-id="317" x="30" y="348" class="label-text-sm">Iron suspension loop</text>
+                    <text data-id="318" x="30" y="360" class="label-text-sm">for strap attachment</text>
+
+                    <line data-id="319" x1="300" y1="284" x2="450" y2="200" class="dim-line" opacity="0.4"/>
+                    <text data-id="320" x="455" y="196" class="label-text-sm">Iron grip bar</text>
+                    <text data-id="321" x="455" y="208" class="label-text-sm">11/16 in × 5/16 in section</text>
+                    <text data-id="322" x="455" y="220" class="label-text-sm">Leather-wrapped</text>
+
+                    <text data-id="323" x="480" y="560" class="label-text-sm">BALLADOOLE TYPE GRIP</text>
+                    <text data-id="324" x="480" y="572" class="label-text-sm">INSULAR PATTERN</text>
+                    <text data-id="325" x="480" y="584" class="label-text-sm">SINGLE STRAP CONFIG</text>
+                </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: CROSS-SECTION -->
+        <section data-id="326" id="panel-cross" class="tab-panel">
+            <div data-id="327" class="text-center mb-6">
+                <h2 data-id="328" class="section-heading text-lg tracking-widest">Cross-Section — Center Line</h2>
+                <p data-id="329" class="font-body text-xs mt-1" style="color:rgba(245,240,225,0.7);">Sectional view through shield center showing material layers</p>
+            </div>
+            <div data-id="330" class="flex justify-center">
+                <div data-id="331" class="content-card">
+                <svg data-id="332" id="cross-section-svg-p5n8" viewBox="0 0 600 420" class="w-full max-w-2xl" xmlns="http://www.w3.org/2000/svg">
+                    <defs data-id="333">
+                        <marker data-id="334" id="arr-s3" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path data-id="335" d="M8,0 L0,3 L8,6" fill="none" stroke="#8B5E3C" stroke-width="0.8"/></marker>
+                        <marker data-id="336" id="arr-e3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path data-id="337" d="M0,0 L8,3 L0,6" fill="none" stroke="#8B5E3C" stroke-width="0.8"/></marker>
+                    </defs>
+
+                    <text data-id="338" x="300" y="22" text-anchor="middle" class="svg-title">CROSS-SECTION — CENTER LINE</text>
+
+                    <rect data-id="339" x="60" y="170" width="480" height="5" fill="none" stroke="#D4A017" stroke-width="0.75"/>
+                    <g data-id="340" opacity="0.2">
+                        <line data-id="341" x1="65" y1="171" x2="65" y2="174" stroke="#D4A017" stroke-width="0.3"/>
+                        <line data-id="342" x1="75" y1="171" x2="75" y2="174" stroke="#D4A017" stroke-width="0.3"/>
+                        <line data-id="343" x1="85" y1="171" x2="85" y2="174" stroke="#D4A017" stroke-width="0.3"/>
+                        <line data-id="344" x1="95" y1="171" x2="95" y2="174" stroke="#D4A017" stroke-width="0.3"/>
+                        <line data-id="345" x1="505" y1="171" x2="505" y2="174" stroke="#D4A017" stroke-width="0.3"/>
+                        <line data-id="346" x1="515" y1="171" x2="515" y2="174" stroke="#D4A017" stroke-width="0.3"/>
+                        <line data-id="347" x1="525" y1="171" x2="525" y2="174" stroke="#D4A017" stroke-width="0.3"/>
+                        <line data-id="348" x1="535" y1="171" x2="535" y2="174" stroke="#D4A017" stroke-width="0.3"/>
+                    </g>
+
+                    <rect data-id="349" x="60" y="175" width="480" height="40" fill="none" stroke="#D4A017" stroke-width="1"/>
+                    <g data-id="350" opacity="0.15">
+                        <line data-id="351" x1="70" y1="180" x2="530" y2="180" stroke="#D4A017" stroke-width="0.3"/>
+                        <line data-id="352" x1="70" y1="185" x2="530" y2="185" stroke="#D4A017" stroke-width="0.3"/>
+                        <line data-id="353" x1="70" y1="190" x2="530" y2="190" stroke="#D4A017" stroke-width="0.3"/>
+                        <line data-id="354" x1="70" y1="195" x2="530" y2="195" stroke="#D4A017" stroke-width="0.3"/>
+                        <line data-id="355" x1="70" y1="200" x2="530" y2="200" stroke="#D4A017" stroke-width="0.3"/>
+                        <line data-id="356" x1="70" y1="205" x2="530" y2="205" stroke="#D4A017" stroke-width="0.3"/>
+                        <line data-id="357" x1="70" y1="210" x2="530" y2="210" stroke="#D4A017" stroke-width="0.3"/>
+                    </g>
+
+                    <rect data-id="358" x="60" y="215" width="480" height="5" fill="none" stroke="#D4A017" stroke-width="0.75"/>
+                    <rect data-id="359" x="260" y="175" width="80" height="40" fill="#1e1e1e" stroke="#D4A017" stroke-width="0.75"/>
+                    <text data-id="360" x="300" y="198" text-anchor="middle" class="label-text-sm" opacity="0.6">⌀ 4-3/8 in</text>
+
+                    <path data-id="361" d="M220,170 L220,170 L260,170 C260,170 265,168 270,164 C280,154 290,130 300,120 C310,130 320,154 330,164 C335,168 340,170 340,170 L380,170" fill="none" stroke="#D4A017" stroke-width="1.5"/>
+                    <line data-id="362" x1="220" y1="168" x2="220" y2="176" stroke="#D4A017" stroke-width="1"/>
+                    <line data-id="363" x1="220" y1="170" x2="260" y2="170" stroke="#D4A017" stroke-width="1.5"/>
+                    <line data-id="364" x1="380" y1="168" x2="380" y2="176" stroke="#D4A017" stroke-width="1"/>
+                    <line data-id="365" x1="340" y1="170" x2="380" y2="170" stroke="#D4A017" stroke-width="1.5"/>
+                    <path data-id="366" d="M264,168 C264,168 269,166 274,162 C284,152 294,128 300,118" fill="none" stroke="#8B5E3C" stroke-width="0.5" stroke-dasharray="2 2" opacity="0.5"/>
+
+                    <rect data-id="367" x="268" y="222" width="64" height="10" rx="1" fill="none" stroke="#D4A017" stroke-width="1.2"/>
+                    <g data-id="368" opacity="0.3">
+                        <line data-id="369" x1="272" y1="222" x2="278" y2="232" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="370" x1="282" y1="222" x2="288" y2="232" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="371" x1="292" y1="222" x2="298" y2="232" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="372" x1="302" y1="222" x2="308" y2="232" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="373" x1="312" y1="222" x2="318" y2="232" stroke="#D4A017" stroke-width="0.4"/>
+                        <line data-id="374" x1="322" y1="222" x2="328" y2="232" stroke="#D4A017" stroke-width="0.4"/>
+                    </g>
+
+                    <g data-id="375" transform="translate(300,165)" fill="none" stroke="#8B5E3C" stroke-width="0.7" stroke-dasharray="3 2" opacity="0.5">
+                        <ellipse data-id="376" rx="22" ry="14"/>
+                        <text data-id="377" x="0" y="4" text-anchor="middle" style="font-size:7px;fill:#8B5E3C;font-family:'IBM Plex Mono',monospace" stroke="none">FIST</text>
+                    </g>
+
+                    <rect data-id="378" x="52" y="167" width="8" height="56" rx="1" fill="none" stroke="#8B5E3C" stroke-width="0.75"/>
+                    <text data-id="379" x="48" y="198" text-anchor="end" class="label-text-sm" transform="rotate(-90,48,198)" opacity="0.6">RIM</text>
+                    <rect data-id="380" x="540" y="167" width="8" height="56" rx="1" fill="none" stroke="#8B5E3C" stroke-width="0.75"/>
+
+                    <line data-id="381" x1="30" y1="170" x2="30" y2="220" class="dim-line" marker-start="url(#arr-s3)" marker-end="url(#arr-e3)"/>
+                    <line data-id="382" x1="30" y1="170" x2="55" y2="170" class="dim-line" opacity="0.3"/>
+                    <line data-id="383" x1="30" y1="220" x2="55" y2="220" class="dim-line" opacity="0.3"/>
+                    <text data-id="384" x="26" y="198" text-anchor="end" class="dim-text" transform="rotate(-90,26,198)">~1/2 in total</text>
+
+                    <line data-id="385" x1="565" y1="175" x2="565" y2="215" class="dim-line" marker-start="url(#arr-s3)" marker-end="url(#arr-e3)"/>
+                    <line data-id="386" x1="548" y1="175" x2="565" y2="175" class="dim-line" opacity="0.3"/>
+                    <line data-id="387" x1="548" y1="215" x2="565" y2="215" class="dim-line" opacity="0.3"/>
+                    <text data-id="388" x="572" y="200" class="dim-text">9/32–3/8 in</text>
+                    <text data-id="389" x="572" y="210" class="dim-text">wood</text>
+
+                    <line data-id="390" x1="395" y1="120" x2="395" y2="170" class="dim-line" marker-start="url(#arr-s3)" marker-end="url(#arr-e3)"/>
+                    <line data-id="391" x1="300" y1="120" x2="395" y2="120" class="dim-line" opacity="0.3"/>
+                    <line data-id="392" x1="380" y1="170" x2="400" y2="170" class="dim-line" opacity="0.3"/>
+                    <text data-id="393" x="400" y="140" class="dim-text">2-9/16 in</text>
+                    <text data-id="394" x="400" y="150" class="dim-text">boss ht</text>
+
+                    <line data-id="395" x1="250" y1="170" x2="250" y2="222" class="dim-line" marker-start="url(#arr-s3)" marker-end="url(#arr-e3)"/>
+                    <text data-id="396" x="244" y="200" text-anchor="end" class="dim-text">≥1 in</text>
+                    <text data-id="397" x="244" y="210" text-anchor="end" class="dim-text">clear</text>
+
+                    <line data-id="398" x1="220" y1="100" x2="380" y2="100" class="dim-line" marker-start="url(#arr-s3)" marker-end="url(#arr-e3)"/>
+                    <line data-id="399" x1="220" y1="100" x2="220" y2="168" class="dim-line" opacity="0.2" stroke-dasharray="2 3"/>
+                    <line data-id="400" x1="380" y1="100" x2="380" y2="168" class="dim-line" opacity="0.2" stroke-dasharray="2 3"/>
+                    <text data-id="401" x="300" y="96" text-anchor="middle" class="dim-text">⌀ 9-1/16 in flange span</text>
+
+                    <line data-id="402" x1="140" y1="172" x2="100" y2="140" class="dim-line" opacity="0.4"/>
+                    <text data-id="403" x="20" y="138" class="label-text-sm">Cattle hide (face)</text>
+                    <text data-id="404" x="20" y="148" class="label-text-sm">dampened + dried taut</text>
+
+                    <line data-id="405" x1="140" y1="195" x2="100" y2="280" class="dim-line" opacity="0.4"/>
+                    <text data-id="406" x="20" y="278" class="label-text-sm">Lime (Tilia) or</text>
+                    <text data-id="407" x="20" y="288" class="label-text-sm">Scots Pine planks</text>
+                    <text data-id="408" x="20" y="298" class="label-text-sm">7 butt-joined</text>
+
+                    <line data-id="409" x1="140" y1="217" x2="100" y2="330" class="dim-line" opacity="0.4"/>
+                    <text data-id="410" x="20" y="328" class="label-text-sm">Cattle hide (back)</text>
+
+                    <line data-id="411" x1="300" y1="232" x2="400" y2="300" class="dim-line" opacity="0.4"/>
+                    <text data-id="412" x="405" y="298" class="label-text-sm">Iron grip bar</text>
+                    <text data-id="413" x="405" y="308" class="label-text-sm">11/16×5/16 in, leather-wrapped</text>
+                    <text data-id="414" x="405" y="318" class="label-text-sm">Balladoole / Insular type</text>
+
+                    <text data-id="415" x="55" y="250" class="label-text-sm">←— RIM</text>
+                    <text data-id="416" x="510" y="250" class="label-text-sm">RIM —→</text>
+
+                    <text data-id="417" x="300" y="370" text-anchor="middle" class="label-text-sm">PROFILE: FLAT (planked construction — not lenticular)</text>
+                    <text data-id="418" x="300" y="384" text-anchor="middle" class="label-text-sm">Board tapers: 3/8 in center → 9/32 in rim edge, 1/4 in min</text>
+                    <text data-id="419" x="300" y="398" text-anchor="middle" class="label-text-sm">Target weight: 5–6 lbs finished</text>
+                </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: BOSS DETAIL -->
+        <section data-id="420" id="panel-boss" class="tab-panel">
+            <div data-id="421" class="text-center mb-6">
+                <h2 data-id="422" class="section-heading text-lg tracking-widest">Umbo — Hiberno-Norse Type</h2>
+                <p data-id="423" class="font-body text-xs mt-1" style="color:rgba(245,240,225,0.7);">Shield boss detail — low dome, wide flange, insular form</p>
+            </div>
+            <div data-id="424" class="flex justify-center">
+                <div data-id="425" class="content-card">
+                <svg data-id="426" id="boss-detail-svg-w4e6" viewBox="0 0 600 680" class="w-full max-w-xl" xmlns="http://www.w3.org/2000/svg">
+                    <defs data-id="427">
+                        <marker data-id="428" id="arr-s4" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto"><path data-id="429" d="M8,0 L0,3 L8,6" fill="none" stroke="#8B5E3C" stroke-width="0.8"/></marker>
+                        <marker data-id="430" id="arr-e4" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path data-id="431" d="M0,0 L8,3 L0,6" fill="none" stroke="#8B5E3C" stroke-width="0.8"/></marker>
+                    </defs>
+
+                    <text data-id="432" x="300" y="22" text-anchor="middle" class="svg-title">UMBO — HIBERNO-NORSE TYPE</text>
+                    <text data-id="433" x="300" y="38" text-anchor="middle" class="label-text-sm">TOP-DOWN VIEW</text>
+
+                    <circle data-id="434" cx="300" cy="185" r="115" fill="none" stroke="#D4A017" stroke-width="1.5"/>
+                    <circle data-id="435" cx="300" cy="185" r="90" fill="none" stroke="#D4A017" stroke-width="0.75" stroke-dasharray="4 2"/>
+                    <circle data-id="436" cx="300" cy="185" r="65" fill="none" stroke="#D4A017" stroke-width="1.5"/>
+                    <circle data-id="437" cx="300" cy="185" r="50" fill="none" stroke="#3a3a3a" stroke-width="0.3"/>
+                    <circle data-id="438" cx="300" cy="185" r="35" fill="none" stroke="#3a3a3a" stroke-width="0.3"/>
+                    <circle data-id="439" cx="300" cy="185" r="20" fill="none" stroke="#3a3a3a" stroke-width="0.3"/>
+                    <circle data-id="440" cx="300" cy="185" r="3" fill="#D4A017" opacity="0.5"/>
+                    <line data-id="441" x1="300" y1="65" x2="300" y2="305" stroke="#3a3a3a" stroke-width="0.3" stroke-dasharray="6 4"/>
+                    <line data-id="442" x1="180" y1="185" x2="420" y2="185" stroke="#3a3a3a" stroke-width="0.3" stroke-dasharray="6 4"/>
+
+                    <g data-id="443">
+                        <circle data-id="444" cx="300" cy="78" r="4" fill="none" stroke="#D4A017" stroke-width="1"/>
+                        <circle data-id="445" cx="300" cy="78" r="1.5" fill="#D4A017"/>
+                        <circle data-id="446" cx="402" cy="152" r="4" fill="none" stroke="#D4A017" stroke-width="1"/>
+                        <circle data-id="447" cx="402" cy="152" r="1.5" fill="#D4A017"/>
+                        <circle data-id="448" cx="363" cy="267" r="4" fill="none" stroke="#D4A017" stroke-width="1"/>
+                        <circle data-id="449" cx="363" cy="267" r="1.5" fill="#D4A017"/>
+                        <circle data-id="450" cx="237" cy="267" r="4" fill="none" stroke="#D4A017" stroke-width="1"/>
+                        <circle data-id="451" cx="237" cy="267" r="1.5" fill="#D4A017"/>
+                        <circle data-id="452" cx="198" cy="152" r="4" fill="none" stroke="#D4A017" stroke-width="1"/>
+                        <circle data-id="453" cx="198" cy="152" r="1.5" fill="#D4A017"/>
+                    </g>
+
+                    <line data-id="454" x1="185" y1="330" x2="415" y2="330" class="dim-line" marker-start="url(#arr-s4)" marker-end="url(#arr-e4)"/>
+                    <line data-id="455" x1="185" y1="300" x2="185" y2="335" class="dim-line" opacity="0.3"/>
+                    <line data-id="456" x1="415" y1="300" x2="415" y2="335" class="dim-line" opacity="0.3"/>
+                    <text data-id="457" x="300" y="326" text-anchor="middle" class="dim-text">⌀ 9-1/16 in flange</text>
+
+                    <line data-id="458" x1="235" y1="350" x2="365" y2="350" class="dim-line" marker-start="url(#arr-s4)" marker-end="url(#arr-e4)"/>
+                    <text data-id="459" x="300" y="346" text-anchor="middle" class="dim-text">⌀ 5-1/8 in dome</text>
+
+                    <line data-id="460" x1="435" y1="185" x2="435" y2="185" class="dim-line"/>
+                    <line data-id="461" x1="415" y1="155" x2="365" y2="155" class="dim-line" marker-start="url(#arr-s4)" marker-end="url(#arr-e4)"/>
+                    <text data-id="462" x="390" y="150" text-anchor="middle" class="dim-text">2 in</text>
+                    <text data-id="463" x="390" y="162" text-anchor="middle" class="dim-text">flange</text>
+
+                    <line data-id="464" x1="300" y1="78" x2="460" y2="60" class="dim-line" opacity="0.3"/>
+                    <text data-id="465" x="464" y="58" class="label-text-sm">Iron rivet (×5)</text>
+                    <text data-id="466" x="464" y="70" class="label-text-sm">peened with washers</text>
+
+                    <text data-id="467" x="300" y="400" text-anchor="middle" class="svg-title">SIDE PROFILE</text>
+
+                    <line data-id="468" x1="100" y1="500" x2="500" y2="500" stroke="#3a3a3a" stroke-width="0.5" stroke-dasharray="6 3"/>
+                    <text data-id="469" x="505" y="503" class="label-text-sm" opacity="0.5">board surface</text>
+
+                    <line data-id="470" x1="150" y1="498" x2="150" y2="500" stroke="#D4A017" stroke-width="1.5"/>
+                    <line data-id="471" x1="150" y1="498" x2="195" y2="498" stroke="#D4A017" stroke-width="1.5"/>
+                    <path data-id="472" d="M195,498 C200,498 205,496 210,492" fill="none" stroke="#D4A017" stroke-width="1.5"/>
+                    <path data-id="473" d="M210,492 C230,460 270,430 300,420 C330,430 370,460 390,492" fill="none" stroke="#D4A017" stroke-width="1.5"/>
+                    <path data-id="474" d="M390,492 C395,496 400,498 405,498" fill="none" stroke="#D4A017" stroke-width="1.5"/>
+                    <line data-id="475" x1="405" y1="498" x2="450" y2="498" stroke="#D4A017" stroke-width="1.5"/>
+                    <line data-id="476" x1="450" y1="498" x2="450" y2="500" stroke="#D4A017" stroke-width="1.5"/>
+
+                    <line data-id="477" x1="152" y1="500" x2="197" y2="500" stroke="#8B5E3C" stroke-width="0.5" stroke-dasharray="2 2"/>
+                    <path data-id="478" d="M197,500 C202,500 207,498 212,494" fill="none" stroke="#8B5E3C" stroke-width="0.5" stroke-dasharray="2 2"/>
+                    <path data-id="479" d="M212,494 C232,462 272,432 300,423 C328,432 368,462 388,494" fill="none" stroke="#8B5E3C" stroke-width="0.5" stroke-dasharray="2 2"/>
+                    <path data-id="480" d="M388,494 C393,498 398,500 403,500" fill="none" stroke="#8B5E3C" stroke-width="0.5" stroke-dasharray="2 2"/>
+                    <line data-id="481" x1="403" y1="500" x2="448" y2="500" stroke="#8B5E3C" stroke-width="0.5" stroke-dasharray="2 2"/>
+
+                    <line data-id="482" x1="470" y1="420" x2="470" y2="498" class="dim-line" marker-start="url(#arr-s4)" marker-end="url(#arr-e4)"/>
+                    <line data-id="483" x1="300" y1="420" x2="470" y2="420" class="dim-line" opacity="0.2" stroke-dasharray="2 3"/>
+                    <line data-id="484" x1="450" y1="498" x2="475" y2="498" class="dim-line" opacity="0.3"/>
+                    <text data-id="485" x="478" y="455" class="dim-text">2-9/16 in</text>
+                    <text data-id="486" x="478" y="466" class="dim-text">dome ht</text>
+
+                    <line data-id="487" x1="130" y1="498" x2="130" y2="500" class="dim-line" marker-start="url(#arr-s4)" marker-end="url(#arr-e4)"/>
+                    <text data-id="488" x="107" y="502" class="dim-text">1/8 in</text>
+
+                    <line data-id="489" x1="150" y1="520" x2="450" y2="520" class="dim-line" marker-start="url(#arr-s4)" marker-end="url(#arr-e4)"/>
+                    <text data-id="490" x="300" y="516" text-anchor="middle" class="dim-text">⌀ 9-1/16 in flange</text>
+
+                    <line data-id="491" x1="210" y1="540" x2="390" y2="540" class="dim-line" marker-start="url(#arr-s4)" marker-end="url(#arr-e4)"/>
+                    <line data-id="492" x1="210" y1="492" x2="210" y2="545" class="dim-line" opacity="0.2" stroke-dasharray="2 3"/>
+                    <line data-id="493" x1="390" y1="492" x2="390" y2="545" class="dim-line" opacity="0.2" stroke-dasharray="2 3"/>
+                    <text data-id="494" x="300" y="536" text-anchor="middle" class="dim-text">⌀ 5-1/8 in dome</text>
+
+                    <line data-id="495" x1="198" y1="496" x2="120" y2="460" class="dim-line" opacity="0.4"/>
+                    <text data-id="496" x="50" y="458" class="label-text-sm">Nail-collar</text>
+                    <text data-id="497" x="50" y="470" class="label-text-sm">transition</text>
+
+                    <g data-id="498" fill="#D4A017" opacity="0.6">
+                        <circle data-id="499" cx="165" cy="499" r="2"/><circle data-id="500" cx="435" cy="499" r="2"/>
+                    </g>
+
+                    <rect data-id="501" x="120" y="590" width="360" height="44" rx="2" fill="none" stroke="#3a3a3a" stroke-width="0.5"/>
+                    <text data-id="502" x="300" y="607" text-anchor="middle" class="label-text-sm">Forged wrought iron — no cast examples known pre-1200 CE</text>
+                    <text data-id="503" x="300" y="621" text-anchor="middle" class="label-text-sm">Hand-hammered dome profile · low dome / wide flange = Insular type</text>
+
+                    <text data-id="504" x="300" y="662" text-anchor="middle" class="dim-text">FLANGE WIDTH: 2 in · IRON THICKNESS: ~1/8 in · 5 RIVETS</text>
+                </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: MATERIALS -->
+        <section data-id="505" id="panel-materials" class="tab-panel">
+            <div data-id="506" class="text-center mb-6">
+                <h2 data-id="507" class="section-heading text-lg tracking-widest">Bill of Materials</h2>
+                <p data-id="508" class="font-body text-xs mt-1" style="color:rgba(245,240,225,0.7);">Complete material schedule for one shield assembly</p>
+            </div>
+
+            <div data-id="509" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div data-id="510" class="lg:col-span-2 content-card">
+                    <h3 data-id="511" class="section-heading text-sm tracking-widest mb-4 pb-2 border-b border-iron-500">
+                        <i data-id="512" data-lucide="package" class="w-4 h-4 inline mr-2"></i>Materials Ledger
+                    </h3>
+                    <div data-id="513" class="overflow-x-auto">
+                        <table data-id="514" class="w-full text-xs font-mono border border-iron-500" style="border-collapse:collapse;">
+                            <thead data-id="515">
+                                <tr data-id="516" class="bg-woad text-saffron">
+                                    <th data-id="517" class="text-left py-2 px-3 border border-iron-500">Item</th>
+                                    <th data-id="518" class="text-left py-2 px-3 border border-iron-500">Specification</th>
+                                    <th data-id="519" class="text-right py-2 px-3 border border-iron-500">Qty</th>
+                                </tr>
+                            </thead>
+                            <tbody data-id="520">
+                                <tr data-id="521" class="material-row">
+                                    <td data-id="522" class="py-3 px-3 text-cream font-medium border border-iron-500">Lime or Pine board stock</td>
+                                    <td data-id="523" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">31-1/2 in × 5-1/8 in × 1/2 in rough-cut, plane to 3/8 in</td>
+                                    <td data-id="524" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">7 planks</td>
+                                </tr>
+                                <tr data-id="525" class="material-row">
+                                    <td data-id="526" class="py-3 px-3 text-cream font-medium border border-iron-500">Raw cattle hide (face)</td>
+                                    <td data-id="527" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">~35-1/2 in × 35-1/2 in, de-haired, not tanned</td>
+                                    <td data-id="528" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">1 pc</td>
+                                </tr>
+                                <tr data-id="529" class="material-row">
+                                    <td data-id="530" class="py-3 px-3 text-cream font-medium border border-iron-500">Raw cattle hide (back)</td>
+                                    <td data-id="531" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">~35-1/2 in × 35-1/2 in, same preparation</td>
+                                    <td data-id="532" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">1 pc</td>
+                                </tr>
+                                <tr data-id="533" class="material-row">
+                                    <td data-id="534" class="py-3 px-3 text-cream font-medium border border-iron-500">Rawhide rim strip</td>
+                                    <td data-id="535" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">8 ft 2-1/2 in × 1 in × 3/16 in, wet-applied</td>
+                                    <td data-id="536" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">1 strip</td>
+                                </tr>
+                                <tr data-id="537" class="material-row">
+                                    <td data-id="538" class="py-3 px-3 text-cream font-medium border border-iron-500">Iron boss blank</td>
+                                    <td data-id="539" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">8 in round bar stock, wrought iron</td>
+                                    <td data-id="540" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">1 pc</td>
+                                </tr>
+                                <tr data-id="541" class="material-row">
+                                    <td data-id="542" class="py-3 px-3 text-cream font-medium border border-iron-500">Grip bar iron</td>
+                                    <td data-id="543" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">11/16 in × 5/16 in × 12-5/8 in flat bar, wrought</td>
+                                    <td data-id="544" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">1 bar</td>
+                                </tr>
+                                <tr data-id="545" class="material-row">
+                                    <td data-id="546" class="py-3 px-3 text-cream font-medium border border-iron-500">Iron tacks (rim)</td>
+                                    <td data-id="547" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">1/4 in shank, flat head</td>
+                                    <td data-id="548" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">×60</td>
+                                </tr>
+                                <tr data-id="549" class="material-row">
+                                    <td data-id="550" class="py-3 px-3 text-cream font-medium border border-iron-500">Iron rivets (boss)</td>
+                                    <td data-id="551" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">With dome washers, peened</td>
+                                    <td data-id="552" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">×6</td>
+                                </tr>
+                                <tr data-id="553" class="material-row">
+                                    <td data-id="554" class="py-3 px-3 text-cream font-medium border border-iron-500">Iron rivets (grip)</td>
+                                    <td data-id="555" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">With washers, peened on face</td>
+                                    <td data-id="556" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">×2</td>
+                                </tr>
+                                <tr data-id="557" class="material-row">
+                                    <td data-id="558" class="py-3 px-3 text-cream font-medium border border-iron-500">Leather grip wrap</td>
+                                    <td data-id="559" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">23-5/8 in × 1-9/16 in strip, oil-dressed</td>
+                                    <td data-id="560" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">1 strip</td>
+                                </tr>
+                                <tr data-id="561" class="material-row">
+                                    <td data-id="562" class="py-3 px-3 text-cream font-medium border border-iron-500">Carrying strap</td>
+                                    <td data-id="563" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">35-1/2 in × 1-3/16 in thick leather, oiled</td>
+                                    <td data-id="564" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">1 strap</td>
+                                </tr>
+                                <tr data-id="565" class="material-row">
+                                    <td data-id="566" class="py-3 px-3 text-cream font-medium border border-iron-500">Hide glue or pegs</td>
+                                    <td data-id="567" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">Optional joinery aid for plank alignment</td>
+                                    <td data-id="568" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">opt.</td>
+                                </tr>
+                                <tr data-id="569" class="material-row">
+                                    <td data-id="570" class="py-3 px-3 text-cream font-medium border border-iron-500">Linseed oil (raw)</td>
+                                    <td data-id="571" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">For board conditioning, 48h penetration</td>
+                                    <td data-id="572" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">~7 fl oz</td>
+                                </tr>
+                                <tr data-id="573" class="material-row">
+                                    <td data-id="574" class="py-3 px-3 text-cream font-medium border border-iron-500">Red ochre pigment</td>
+                                    <td data-id="575" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">Fe₂O₃ + linseed oil binder</td>
+                                    <td data-id="576" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">~1-3/4 oz</td>
+                                </tr>
+                                <tr data-id="577" class="material-row">
+                                    <td data-id="578" class="py-3 px-3 text-cream font-medium border border-iron-500">Lamp black pigment</td>
+                                    <td data-id="579" class="py-3 px-3 border border-iron-500" style="color:rgba(245,240,225,0.7);">Carbon soot + linseed oil binder</td>
+                                    <td data-id="580" class="py-3 px-3 text-right text-cream tabular-nums border border-iron-500">~1 oz</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div data-id="581" class="content-card">
+                    <h3 data-id="582" class="section-heading text-sm tracking-widest mb-4 pb-2 border-b border-iron-500">
+                        <i data-id="583" data-lucide="hammer" class="w-4 h-4 inline mr-2"></i>Tools Required
+                    </h3>
+                    <div data-id="584" class="space-y-1">
+                        <div data-id="585" class="flex items-start gap-2 py-2 border-b border-iron-500/50">
+                            <span data-id="586" class="text-saffron text-xs mt-0.5">▸</span>
+                            <div data-id="587">
+                                <p data-id="588" class="text-xs text-cream font-medium">Rip saw</p>
+                                <p data-id="589" class="text-xs" style="color:rgba(245,240,225,0.5);">Plank stock splitting</p>
+                            </div>
+                        </div>
+                        <div data-id="590" class="flex items-start gap-2 py-2 border-b border-iron-500/50">
+                            <span data-id="591" class="text-saffron text-xs mt-0.5">▸</span>
+                            <div data-id="592">
+                                <p data-id="593" class="text-xs text-cream font-medium">Draw knife & spokeshave</p>
+                                <p data-id="594" class="text-xs" style="color:rgba(245,240,225,0.5);">Thickness planing, edge shaping</p>
+                            </div>
+                        </div>
+                        <div data-id="595" class="flex items-start gap-2 py-2 border-b border-iron-500/50">
+                            <span data-id="596" class="text-saffron text-xs mt-0.5">▸</span>
+                            <div data-id="597">
+                                <p data-id="598" class="text-xs text-cream font-medium">Brace & bit</p>
+                                <p data-id="599" class="text-xs" style="color:rgba(245,240,225,0.5);">4-3/8 in hole saw for boss hole</p>
+                            </div>
+                        </div>
+                        <div data-id="600" class="flex items-start gap-2 py-2 border-b border-iron-500/50">
+                            <span data-id="601" class="text-saffron text-xs mt-0.5">▸</span>
+                            <div data-id="602">
+                                <p data-id="603" class="text-xs text-cream font-medium">Hammer & riveting anvil</p>
+                                <p data-id="604" class="text-xs" style="color:rgba(245,240,225,0.5);">Boss & grip riveting</p>
+                            </div>
+                        </div>
+                        <div data-id="605" class="flex items-start gap-2 py-2 border-b border-iron-500/50">
+                            <span data-id="606" class="text-saffron text-xs mt-0.5">▸</span>
+                            <div data-id="607">
+                                <p data-id="608" class="text-xs text-cream font-medium">Awl & leather punch</p>
+                                <p data-id="609" class="text-xs" style="color:rgba(245,240,225,0.5);">Hide tacking, strap holes</p>
+                            </div>
+                        </div>
+                        <div data-id="610" class="flex items-start gap-2 py-2 border-b border-iron-500/50">
+                            <span data-id="611" class="text-saffron text-xs mt-0.5">▸</span>
+                            <div data-id="612">
+                                <p data-id="613" class="text-xs text-cream font-medium">Forge, hammer, tongs</p>
+                                <p data-id="614" class="text-xs" style="color:rgba(245,240,225,0.5);">Boss forging & grip bar</p>
+                            </div>
+                        </div>
+                        <div data-id="615" class="flex items-start gap-2 py-2">
+                            <span data-id="616" class="text-saffron text-xs mt-0.5">▸</span>
+                            <div data-id="617">
+                                <p data-id="618" class="text-xs text-cream font-medium">Bow saw</p>
+                                <p data-id="619" class="text-xs" style="color:rgba(245,240,225,0.5);">Circular cut of assembled board</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-id="620" class="mt-6 pt-4 border-t border-iron-500">
+                        <h4 data-id="621" class="text-russet text-xs tracking-widest mb-3 font-semibold uppercase">Weight Estimate</h4>
+                        <div data-id="622" class="space-y-2 text-xs font-mono">
+                            <div data-id="623" class="flex justify-between"><span data-id="624" style="color:rgba(245,240,225,0.6);">Wood board</span><span data-id="625" class="text-cream tabular-nums">~4.0 lbs</span></div>
+                            <div data-id="626" class="flex justify-between"><span data-id="627" style="color:rgba(245,240,225,0.6);">Hide (×2)</span><span data-id="628" class="text-cream tabular-nums">~1.1 lbs</span></div>
+                            <div data-id="629" class="flex justify-between"><span data-id="630" style="color:rgba(245,240,225,0.6);">Boss (iron)</span><span data-id="631" class="text-cream tabular-nums">~0.7 lbs</span></div>
+                            <div data-id="632" class="flex justify-between"><span data-id="633" style="color:rgba(245,240,225,0.6);">Grip + hardware</span><span data-id="634" class="text-cream tabular-nums">~0.4 lbs</span></div>
+                            <div data-id="635" class="flex justify-between"><span data-id="636" style="color:rgba(245,240,225,0.6);">Rim + tacks</span><span data-id="637" class="text-cream tabular-nums">~0.4 lbs</span></div>
+                            <div data-id="638" class="flex justify-between pt-2 border-t border-iron-500 font-semibold"><span data-id="639" class="text-saffron">Total (target)</span><span data-id="640" class="text-saffron tabular-nums">~5–6 lbs</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-id="641" class="mt-6 content-card">
+                <h3 data-id="642" class="section-heading text-sm tracking-widest mb-3">
+                    <i data-id="643" data-lucide="tree-pine" class="w-4 h-4 inline mr-2"></i>Wood Species Notes
+                </h3>
+                <div data-id="644" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div data-id="645" class="border border-iron-500 rounded p-3" style="background:#262626;">
+                        <p data-id="646" class="text-saffron font-semibold mb-1">Lime (Tilia europaea) — Preferred</p>
+                        <p data-id="647" class="leading-relaxed" style="color:rgba(245,240,225,0.7);">Light, straight-grained, easy to work. Resists splitting under impact. Preferred for shield construction across Scandinavian tradition. Quarter-sawn for radial grain orientation.</p>
+                    </div>
+                    <div data-id="648" class="border border-iron-500 rounded p-3" style="background:#262626;">
+                        <p data-id="649" class="text-saffron font-semibold mb-1">Scots Pine (Pinus sylvestris) — Alternate</p>
+                        <p data-id="650" class="leading-relaxed" style="color:rgba(245,240,225,0.7);">Attested at Gokstad burial (c. 900 CE). Heavier than lime, more resinous. Acceptable substitute where lime unavailable. Pine shields found in Norse-Gaelic archaeological contexts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 6: CONSTRUCTION -->
+        <section data-id="651" id="panel-construction" class="tab-panel">
+            <div data-id="652" class="text-center mb-6">
+                <h2 data-id="653" class="section-heading text-lg tracking-widest">Construction Sequence</h2>
+                <p data-id="654" class="font-body text-xs mt-1" style="color:rgba(245,240,225,0.7);">Numbered assembly procedure — traditional methods</p>
+            </div>
+
+            <div data-id="655" class="max-w-3xl mx-auto space-y-0">
+                <div data-id="656" class="construction-step pb-8">
+                    <div data-id="657" class="flex items-start gap-3">
+                        <span data-id="658" class="text-saffron font-mono text-sm font-bold tabular-nums min-w-[24px]">01</span>
+                        <div data-id="659">
+                            <h4 data-id="660" class="text-saffron font-semibold text-sm mb-1">Plank Selection & Preparation</h4>
+                            <p data-id="661" class="text-xs leading-relaxed" style="color:rgba(245,240,225,0.8);">Quarter-sawn lime, radially grained. Rip 7 planks from seasoned stock. Thickness-plane to 3/8 in at center plank zone, 9/32 in at flanking planks, 1/4 in at outer edges. Center plank width: 4-3/4 in; flanking planks taper from 4-1/2 in at center to 2-3/8 in at rim edge. Allow wood to acclimatize 2 weeks in working environment before assembly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-id="662" class="construction-step pb-8">
+                    <div data-id="663" class="flex items-start gap-3">
+                        <span data-id="664" class="text-saffron font-mono text-sm font-bold tabular-nums min-w-[24px]">02</span>
+                        <div data-id="665">
+                            <h4 data-id="666" class="text-saffron font-semibold text-sm mb-1">Board Assembly</h4>
+                            <p data-id="667" class="text-xs leading-relaxed" style="color:rgba(245,240,225,0.8);">Butt-join planks edge-to-edge across 30 in span. No adhesive required — wet hide application will swell joints tight. Optionally: insert two hardwood dowels per joint for alignment during hide application. Rough-cut assembled board to circle using bow-saw, then finish edge with spokeshave to final 30 in diameter.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-id="668" class="construction-step pb-8">
+                    <div data-id="669" class="flex items-start gap-3">
+                        <span data-id="670" class="text-saffron font-mono text-sm font-bold tabular-nums min-w-[24px]">03</span>
+                        <div data-id="671">
+                            <h4 data-id="672" class="text-saffron font-semibold text-sm mb-1">Boss Hole</h4>
+                            <p data-id="673" class="text-xs leading-relaxed" style="color:rgba(245,240,225,0.8);">Mark exact center of board. Bore 4-3/8 in diameter hole using brace & bit or keyhole saw, working from both faces to prevent blow-out. Sand edges smooth. Ensure hole is concentric — boss flange must overlap board by 2 in uniformly on all sides.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-id="674" class="construction-step pb-8">
+                    <div data-id="675" class="flex items-start gap-3">
+                        <span data-id="676" class="text-saffron font-mono text-sm font-bold tabular-nums min-w-[24px]">04</span>
+                        <div data-id="677">
+                            <h4 data-id="678" class="text-saffron font-semibold text-sm mb-1">Board Conditioning</h4>
+                            <p data-id="679" class="text-xs leading-relaxed" style="color:rgba(245,240,225,0.8);">Coat both faces of the assembled board with raw linseed oil, applied liberally with cloth. Allow minimum 48 hours for oil to penetrate grain. This reduces splitting under stress and improves moisture resistance. Do not use boiled linseed oil — raw oil preserves wood flexibility.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-id="680" class="construction-step pb-8">
+                    <div data-id="681" class="flex items-start gap-3">
+                        <span data-id="682" class="text-saffron font-mono text-sm font-bold tabular-nums min-w-[24px]">05</span>
+                        <div data-id="683">
+                            <h4 data-id="684" class="text-saffron font-semibold text-sm mb-1">Hide Application (Face)</h4>
+                            <p data-id="685" class="text-xs leading-relaxed" style="color:rgba(245,240,225,0.8);">Soak cattle hide overnight in water until pliable. Stretch wet hide over face of shield, pulling edges to back. Tack with iron tacks at 4 compass points first to establish even tension, then work around circumference. Allow to dry 72 hours under tension — hide will shrink tight, compressing joints and binding planks as a structural element. Trim flush at rim.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-id="686" class="construction-step pb-8">
+                    <div data-id="687" class="flex items-start gap-3">
+                        <span data-id="688" class="text-saffron font-mono text-sm font-bold tabular-nums min-w-[24px]">06</span>
+                        <div data-id="689">
+                            <h4 data-id="690" class="text-saffron font-semibold text-sm mb-1">Hide Application (Back)</h4>
+                            <p data-id="691" class="text-xs leading-relaxed" style="color:rgba(245,240,225,0.8);">Repeat hide application process for back face. Same soak-stretch-dry procedure. Ensure boss hole remains clear of hide — trim neatly around hole edge. Back hide may be slightly thinner gauge than face hide.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-id="692" class="construction-step pb-8">
+                    <div data-id="693" class="flex items-start gap-3">
+                        <span data-id="694" class="text-saffron font-mono text-sm font-bold tabular-nums min-w-[24px]">07</span>
+                        <div data-id="695">
+                            <h4 data-id="696" class="text-saffron font-semibold text-sm mb-1">Rim Rawhide</h4>
+                            <p data-id="697" class="text-xs leading-relaxed" style="color:rgba(245,240,225,0.8);">Soak rawhide strip (8 ft 2-1/2 in × 1 in × 3/16 in). Fold over rim edge with equal coverage on front and back faces. Tack with 1/4 in iron tacks at 1-9/16 in intervals while strip is still wet — approximately 60 tacks total for full circumference. Splice-join at bottom-rear of shield (least exposed to direct strikes). Allow 48 hours to dry and contract. Rim provides critical edge protection and structural binding.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-id="698" class="construction-step pb-8">
+                    <div data-id="699" class="flex items-start gap-3">
+                        <span data-id="700" class="text-saffron font-mono text-sm font-bold tabular-nums min-w-[24px]">08</span>
+                        <div data-id="701">
+                            <h4 data-id="702" class="text-saffron font-semibold text-sm mb-1">Boss Forging</h4>
+                            <p data-id="703" class="text-xs leading-relaxed" style="color:rgba(245,240,225,0.8);">Forge wrought iron disc to low-dome profile (Hiberno-Norse / Insular type). Start with ~8 in round bar stock, upset to ~1/8 in thickness. Draw dome to 2-9/16 in height with 5-1/8 in diameter. Draw out flange to 9-1/16 in total diameter (2 in flange width). File smooth. Punch 5 rivet holes evenly spaced in flange. Test-fit to boss hole — flange must overlap board by 2 in uniformly. No cast examples known pre-1200 CE; all bosses must be hand-forged.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-id="704" class="construction-step pb-8">
+                    <div data-id="705" class="flex items-start gap-3">
+                        <span data-id="706" class="text-saffron font-mono text-sm font-bold tabular-nums min-w-[24px]">09</span>
+                        <div data-id="707">
+                            <h4 data-id="708" class="text-saffron font-semibold text-sm mb-1">Boss Riveting</h4>
+                            <p data-id="709" class="text-xs leading-relaxed" style="color:rgba(245,240,225,0.8);">Seat boss in hole from face side. Mark flange rivet holes on board through hide. Drill or punch through board. Insert iron rivets from face side through flange, board, and back hide. Peen on back with dome washers to spread load. Check dome interior clears fist by at least 1 in — critical for combat grip. 5 rivets minimum, 6 for additional security.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-id="710" class="construction-step pb-8">
+                    <div data-id="711" class="flex items-start gap-3">
+                        <span data-id="712" class="text-saffron font-mono text-sm font-bold tabular-nums min-w-[24px]">10</span>
+                        <div data-id="713">
+                            <h4 data-id="714" class="text-saffron font-semibold text-sm mb-1">Grip Bar</h4>
+                            <p data-id="715" class="text-xs leading-relaxed" style="color:rgba(245,240,225,0.8);">Forge or cut 11/16 in × 5/16 in iron flat bar to 11-3/4 in length. Slightly bow bar (~1/8 in arc) for ergonomic hand comfort. Wrap tightly with oil-dressed leather strip (23-5/8 in × 1-9/16 in), overlapping wraps by half width. Rivet through board at each end, peened on face side with washers. Grip bar must span entire boss interior diameter.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-id="716" class="construction-step pb-8">
+                    <div data-id="717" class="flex items-start gap-3">
+                        <span data-id="718" class="text-saffron font-mono text-sm font-bold tabular-nums min-w-[24px]">11</span>
+                        <div data-id="719">
+                            <h4 data-id="720" class="text-saffron font-semibold text-sm mb-1">Strap Attachment</h4>
+                            <p data-id="721" class="text-xs leading-relaxed" style="color:rgba(245,240,225,0.8);">Attach iron suspension loops to grip rivet points on back face. Thread 35-1/2 in × 1-3/16 in leather carrying strap through loops. Strap should allow shoulder carry (slung across back for march) and wrist retention loop in combat. Adjust loop positions for balanced hang when carried. Oil strap thoroughly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-id="722" class="construction-step pb-2" style="border-left:none;">
+                    <div data-id="723" class="flex items-start gap-3">
+                        <span data-id="724" class="text-saffron font-mono text-sm font-bold tabular-nums min-w-[24px]">12</span>
+                        <div data-id="725">
+                            <h4 data-id="726" class="text-saffron font-semibold text-sm mb-1">Paint & Finish</h4>
+                            <p data-id="727" class="text-xs leading-relaxed" style="color:rgba(245,240,225,0.8);">Apply red ochre (Fe₂O₃) in linseed oil binder to upper-left and lower-right quadrants of shield face. Apply woad blue to upper-right and lower-left quadrants. Allow 48 hours to dry between coats. Optionally: incise Norse-Gaelic knotwork triskele border at quadrant boundaries with heated iron stylus before painting (tooled-hide technique). Apply final thin coat of raw linseed oil over entire face as sealant.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-id="728" class="mt-8 content-card max-w-3xl mx-auto">
+                <h3 data-id="729" class="section-heading text-sm tracking-widest mb-3">
+                    <i data-id="730" data-lucide="clock" class="w-4 h-4 inline mr-2"></i>Estimated Build Timeline
+                </h3>
+                <div data-id="731" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-mono">
+                    <div data-id="732" class="border border-iron-500 rounded p-3 text-center" style="background:#262626;">
+                        <p data-id="733" class="text-saffron text-lg font-bold tabular-nums">14</p>
+                        <p data-id="734" style="color:rgba(245,240,225,0.5);">days — wood</p>
+                        <p data-id="735" style="color:rgba(245,240,225,0.5);">acclimatize</p>
+                    </div>
+                    <div data-id="736" class="border border-iron-500 rounded p-3 text-center" style="background:#262626;">
+                        <p data-id="737" class="text-saffron text-lg font-bold tabular-nums">2–3</p>
+                        <p data-id="738" style="color:rgba(245,240,225,0.5);">days — board</p>
+                        <p data-id="739" style="color:rgba(245,240,225,0.5);">assembly</p>
+                    </div>
+                    <div data-id="740" class="border border-iron-500 rounded p-3 text-center" style="background:#262626;">
+                        <p data-id="741" class="text-saffron text-lg font-bold tabular-nums">7–8</p>
+                        <p data-id="742" style="color:rgba(245,240,225,0.5);">days — hide</p>
+                        <p data-id="743" style="color:rgba(245,240,225,0.5);">& drying</p>
+                    </div>
+                    <div data-id="744" class="border border-iron-500 rounded p-3 text-center" style="background:#262626;">
+                        <p data-id="745" class="text-saffron text-lg font-bold tabular-nums">3–4</p>
+                        <p data-id="746" style="color:rgba(245,240,225,0.5);">days — iron</p>
+                        <p data-id="747" style="color:rgba(245,240,225,0.5);">& finish</p>
+                    </div>
+                </div>
+                <p data-id="748" class="text-xs mt-3 text-center" style="color:rgba(245,240,225,0.5);">Total: approximately 4–5 weeks from raw stock to finished shield</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer data-id="749" class="py-8 mt-8 text-center bg-iron-900 border-t border-iron-500" style="padding:2rem;">
+        <div data-id="750" class="max-w-6xl mx-auto px-4">
+            <p data-id="751" class="text-sm" style="color:rgba(245,240,225,0.6);">Clan Sealgair Kit Ledger • Est. 1155 CE • The Sword and the Cauldron • Inverie, Knoydart</p>
+            <p data-id="752" class="text-sm mt-2" style="color:rgba(245,240,225,0.6);">Made by Copilot</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Site nav mobile toggle
+        const siteMenuBtn = document.getElementById('site-mobile-btn');
+        const siteMenu = document.getElementById('site-mobile-menu');
+        siteMenuBtn.addEventListener('click', () => {
+            siteMenu.classList.toggle('hidden');
+        });
+
+        // Tab switching logic
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const mobileTabs = document.querySelectorAll('.mobile-tab-item');
+        const panels = document.querySelectorAll('.tab-panel');
+        const currentLabel = document.getElementById('current-tab-label-m2n4');
+        const mobileMenu = document.getElementById('mobile-tab-menu-j5w7');
+        const mobileMenuBtn = document.getElementById('mobile-tab-btn-r8k3');
+        const mobileMenuClose = document.getElementById('mobile-tab-close-a1b2');
+
+        const tabLabels = {
+            'front': 'FRONT VIEW',
+            'back': 'BACK VIEW',
+            'cross': 'CROSS-SECTION',
+            'boss': 'BOSS DETAIL',
+            'materials': 'MATERIALS',
+            'construction': 'CONSTRUCTION'
+        };
+
+        function switchTab(tabId) {
+            tabBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.tab === tabId);
+            });
+
+            mobileTabs.forEach(btn => {
+                if (btn.dataset.tab === tabId) {
+                    btn.classList.remove('bg-iron-800');
+                    btn.classList.add('bg-woad');
+                    btn.style.color = '#D4A017';
+                } else {
+                    btn.classList.remove('bg-woad');
+                    btn.classList.add('bg-iron-800');
+                    btn.style.color = 'rgba(245,240,225,0.7)';
+                }
+            });
+
+            panels.forEach(panel => {
+                panel.classList.toggle('active', panel.id === 'panel-' + tabId);
+            });
+
+            if (currentLabel) {
+                currentLabel.textContent = tabLabels[tabId] || tabId.toUpperCase();
+            }
+
+            mobileMenu.classList.add('hidden');
+        }
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+        });
+
+        mobileTabs.forEach(btn => {
+            btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+        });
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
