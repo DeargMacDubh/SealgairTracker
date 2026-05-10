@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arms Guide — Hiberno-Norse Kit c.1155 AD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: {
+                            50: '#faf8f3',
+                            100: '#f5f0e8',
+                            200: '#ede6d8',
+                            300: '#ddd4c0',
+                            400: '#c9bda4',
+                            500: '#b0a188',
+                        },
+                        forest: {
+                            50: '#e8f0e8',
+                            100: '#c4d8c5',
+                            200: '#8fb892',
+                            300: '#5a8a5d',
+                            400: '#3d6940',
+                            500: '#2c4a2e',
+                            600: '#233b25',
+                            700: '#1a2c1b',
+                            800: '#111d12',
+                            900: '#0a110a',
+                        },
+                        burgundy: {
+                            50: '#f5e8e8',
+                            100: '#e0c0c0',
+                            200: '#c08080',
+                            300: '#934545',
+                            400: '#7a2d2d',
+                            500: '#5c1a1a',
+                            600: '#4a1515',
+                            700: '#3a1010',
+                            800: '#2a0c0c',
+                            900: '#1c0808',
+                        },
+                        ink: {
+                            50: '#f0ece6',
+                            100: '#d4cec4',
+                            200: '#a8a090',
+                            300: '#7a7060',
+                            400: '#5a5040',
+                            500: '#3d3428',
+                            600: '#2e2820',
+                            700: '#221e18',
+                            800: '#181510',
+                            900: '#100e0a',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Cormorant Garamond', 'Georgia', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                        body: ['Georgia', 'Cormorant Garamond', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --forest: #2c4a2e;
+            --burgundy: #5c1a1a;
+            --parchment: #f5f0e8;
+            --parchment-deep: #ede6d8;
+            --ink: #3d3428;
+            --ink-light: #5a5040;
+            --gold: #8b7632;
+            --gold-light: #c4a84d;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--parchment);
+            background-image:
+                radial-gradient(ellipse at 20% 50%, rgba(92,26,26,0.02) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(44,74,46,0.02) 0%, transparent 60%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9bda4' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--ink);
+        }
+
+        /* Decorative dividers */
+        .manuscript-divider {
+            position: relative;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2.5rem 0;
+        }
+        .manuscript-divider::before {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; top: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-light), var(--gold), var(--gold-light), transparent);
+            opacity: 0.5;
+        }
+        .manuscript-divider::after {
+            content: '✦';
+            position: relative;
+            z-index: 1;
+            background: var(--parchment);
+            padding: 0 1rem;
+            color: var(--gold);
+            font-size: 14px;
+            letter-spacing: 0.5em;
+        }
+
+        .manuscript-divider-alt {
+            position: relative;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        .manuscript-divider-alt::before {
+            content: '';
+            position: absolute;
+            left: 10%; right: 10%; top: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(44,74,46,0.3), rgba(92,26,26,0.3), rgba(44,74,46,0.3), transparent);
+        }
+        .manuscript-divider-alt::after {
+            content: '◆';
+            position: relative;
+            z-index: 1;
+            background: var(--parchment);
+            padding: 0 0.75rem;
+            color: var(--gold);
+            font-size: 10px;
+        }
+
+        /* Section headings */
+        .chapter-heading {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 700;
+            color: var(--forest);
+            letter-spacing: 0.05em;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+        .chapter-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--burgundy), transparent);
+        }
+
+        /* Badge styles */
+        .badge-old {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(92,26,26,0.12);
+            color: var(--burgundy);
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 3px;
+            border: 1px solid rgba(92,26,26,0.2);
+        }
+        .badge-new {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(44,74,46,0.12);
+            color: var(--forest);
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 3px;
+            border: 1px solid rgba(44,74,46,0.2);
+        }
+        .badge-utility {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(61,52,40,0.08);
+            color: var(--ink-light);
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 3px;
+            border: 1px solid rgba(61,52,40,0.15);
+        }
+
+        /* Table styles */
+        .kit-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+        }
+        .kit-table thead th {
+            background: linear-gradient(135deg, var(--forest), #1a2c1b);
+            color: #f5f0e8;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 11px;
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 2px solid var(--burgundy);
+        }
+        .kit-table thead th:first-child {
+            border-radius: 6px 0 0 0;
+        }
+        .kit-table thead th:last-child {
+            border-radius: 0 6px 0 0;
+        }
+        .kit-table tbody tr:nth-child(odd) {
+            background: rgba(237,230,216,0.5);
+        }
+        .kit-table tbody tr:nth-child(even) {
+            background: rgba(245,240,232,0.5);
+        }
+        .kit-table tbody tr:hover {
+            background: rgba(196,168,77,0.08);
+        }
+        .kit-table tbody td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(201,189,164,0.4);
+            color: var(--ink);
+            vertical-align: top;
+        }
+        .kit-table tfoot td {
+            background: linear-gradient(135deg, var(--burgundy), #3a1010);
+            color: #f5f0e8;
+            font-weight: 700;
+            padding: 12px 14px;
+            font-size: 13px;
+        }
+        .kit-table tfoot td:first-child {
+            border-radius: 0 0 0 6px;
+        }
+        .kit-table tfoot td:last-child {
+            border-radius: 0 0 6px 0;
+        }
+
+        /* Item card */
+        .item-card {
+            background: rgba(250,248,243,0.7);
+            border: 1px solid rgba(201,189,164,0.35);
+            border-radius: 8px;
+            padding: 1.5rem 1.75rem;
+            margin-bottom: 1.75rem;
+            position: relative;
+        }
+        .item-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            border-radius: 8px 8px 0 0;
+        }
+        .item-card.card-old::before {
+            background: linear-gradient(90deg, var(--burgundy), transparent);
+        }
+        .item-card.card-new::before {
+            background: linear-gradient(90deg, var(--forest), transparent);
+        }
+        .item-card.card-utility::before {
+            background: linear-gradient(90deg, var(--ink-light), transparent);
+        }
+
+        /* Detail list */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4px 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+        }
+        .detail-label {
+            color: var(--ink-light);
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding-top: 2px;
+        }
+        .detail-value {
+            color: var(--ink);
+        }
+
+        /* Navigation */
+        .nav-link {
+            color: var(--parchment);
+            opacity: 0.8;
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            transition: opacity 0.2s;
+            padding: 8px 4px;
+        }
+        .nav-link:hover {
+            opacity: 1;
+            text-decoration: none;
+        }
+
+        /* Star rating */
+        .stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; }
+
+        /* Print styles */
+        @media print {
+            .no-print { display: none !important; }
+            body {
+                background: #fff !important;
+                background-image: none !important;
+                font-size: 11pt;
+                color: #000;
+            }
+            .item-card {
+                break-inside: avoid;
+                border: 1px solid #ccc;
+            }
+            .kit-table thead th {
+                background: #2c4a2e !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .kit-table tfoot td {
+                background: #5c1a1a !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .kit-table tbody tr:nth-child(odd) {
+                background: #f0ece6 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            nav { background: #2c4a2e !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--parchment-deep); }
+        ::-webkit-scrollbar-thumb { background: var(--parchment-500, #b0a188); border-radius: 4px; }
+
+        /* Initial capital */
+        .drop-cap::first-letter {
+            float: left;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 3.4em;
+            line-height: 0.8;
+            padding-right: 8px;
+            padding-top: 4px;
+            color: var(--burgundy);
+            font-weight: 700;
+        }
+
+        /* Mobile nav */
+        #mobile-menu {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        #mobile-menu.menu-hidden {
+            transform: translateY(-10px);
+            opacity: 0;
+            pointer-events: none;
+        }
+        #mobile-menu.menu-visible {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body data-id="0" class="min-h-screen">
+
+<app-icon data-id="1" hidden data-icon="sword" data-palette="Earth"></app-icon>
+
+<!-- ===== NAVIGATION ===== -->
+<nav data-id="2" class="no-print sticky top-0 z-50 border-b border-forest-700" style="background: linear-gradient(135deg, #2c4a2e, #1a2c1b);">
+    <div data-id="3" class="max-w-[860px] mx-auto px-5 flex items-center justify-between" style="min-height: 52px;">
+        <span data-id="4" class="font-display text-parchment-100 text-lg font-bold tracking-wider">Arms Guide</span>
+        <!-- Desktop nav -->
+        <div data-id="5" class="hidden md:flex items-center gap-6">
+            <a data-id="6" href="#context" class="nav-link">The World</a>
+            <a data-id="7" href="#michael" class="nav-link">His Kit</a>
+            <a data-id="8" href="#jade" class="nav-link">Jade's Kit</a>
+            <a data-id="9" href="#jade-bow" class="nav-link">Jade's Bow</a>
+            <a data-id="10" href="#summary" class="nav-link">Summary</a>
+            <a data-id="11" href="#sourcing" class="nav-link">Sourcing</a>
+        </div>
+        <!-- Mobile menu button -->
+        <button data-id="12" id="mobile-menu-btn" class="md:hidden p-2 text-parchment-100">
+            <i data-id="13" data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+    <!-- Mobile nav -->
+    <div data-id="14" id="mobile-menu" class="md:hidden menu-hidden absolute top-full left-0 right-0 z-50 border-t border-forest-700" style="background: linear-gradient(135deg, #2c4a2e, #1a2c1b);">
+        <div data-id="15" class="flex flex-col px-5 py-4 gap-3">
+            <a data-id="16" href="#context" class="nav-link mobile-nav-link">The World of 1155</a>
+            <a data-id="17" href="#michael" class="nav-link mobile-nav-link">Michael's Kit</a>
+            <a data-id="18" href="#jade" class="nav-link mobile-nav-link">Jade's Kit</a>
+            <a data-id="19" href="#jade-bow" class="nav-link mobile-nav-link">Jade's Bow</a>
+            <a data-id="20" href="#summary" class="nav-link mobile-nav-link">Cost Summary</a>
+            <a data-id="21" href="#sourcing" class="nav-link mobile-nav-link">Sourcing</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main data-id="22" class="max-w-[860px] mx-auto px-5 md:px-8 py-10 md:py-16">
+
+    <!-- ===== HEADER ===== -->
+    <header data-id="23" class="text-center mb-4">
+        <p data-id="24" class="font-sans text-xs font-semibold tracking-[0.3em] uppercase mb-4" style="color: var(--gold);">Reference Document</p>
+        <h1 data-id="25" class="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-wide mb-3" style="color: var(--forest);">Arms Guide</h1>
+        <p data-id="26" class="font-display text-xl md:text-2xl font-semibold tracking-wider mb-5" style="color: var(--burgundy);">
+            Hiberno-Norse Kit · <em data-id="27">c.</em> 1155 AD
+        </p>
+        <div data-id="28" class="inline-block px-6 py-2 rounded" style="background: rgba(44,74,46,0.06); border: 1px solid rgba(44,74,46,0.12);">
+            <p data-id="29" class="font-sans text-xs md:text-sm" style="color: var(--ink-light);">
+                All pieces sourced exclusively from <strong data-id="30" class="font-semibold" style="color: var(--ink);">Tod's Workshop / Tod Cutler</strong> · <strong data-id="31" class="font-semibold" style="color: var(--ink);">WhipperWil Archery</strong>
+            </p>
+        </div>
+    </header>
+
+    <div data-id="32" class="manuscript-divider"></div>
+
+    <!-- ===== SECTION 1: HISTORICAL CONTEXT ===== -->
+    <section data-id="33" id="context" class="scroll-mt-20 mb-6">
+        <h2 data-id="34" class="chapter-heading text-2xl md:text-3xl mb-6">The World of 1155</h2>
+
+        <div data-id="35" class="font-body text-base md:text-lg leading-relaxed space-y-5 mt-8" style="color: var(--ink);">
+            <p data-id="36" class="drop-cap">Set the scene. 1155 AD. The Hiberno-Norse world of the western seaboards of Scotland and Ireland. The era of Somerled of Argyll — a man who straddled two worlds: the old Viking inheritance of his Norse-Gaelic ancestors and the rising tide of Norman feudal culture sweeping Britain. He fought not for Scandinavian kings but for his own sovereignty, and he did so with one foot in each world.</p>
+
+            <p data-id="37">This kit carries that tension as its central theme. Every piece belongs to one of two narratives — the <span data-id="38" class="badge-old">Old Ways</span> <span data-id="39" class="font-body">(Norse-Gaelic ancestral tradition: the seax, the archaic antenna dagger, the self-bow)</span> or the <span data-id="40" class="badge-new">New Ways</span> <span data-id="41" class="font-body">(Norman continental influence: the knightly arming sword).</span> A warrior who carries both sends a message without speaking a word.</p>
+        </div>
+
+        <div data-id="42" class="mt-8 px-5 py-4 rounded-md" style="background: rgba(139,118,50,0.06); border-left: 3px solid var(--gold);">
+            <p data-id="43" class="font-body text-sm italic" style="color: var(--ink-light);">
+                All bladed pieces sourced from Tod's Workshop / Tod Cutler (todsworkshop.com) — a British maker producing small-batch, hand-finished historical reproductions under direct maker oversight. Every piece in this kit shares the same quality standard, as if drawn from the same ancient blacksmith's forge.
+            </p>
+        </div>
+    </section>
+
+    <div data-id="44" class="manuscript-divider"></div>
+
+    <!-- ===== SECTION 2: MICHAEL'S KIT ===== -->
+    <section data-id="45" id="michael" class="scroll-mt-20 mb-6">
+        <h2 data-id="46" class="chapter-heading text-2xl md:text-3xl mb-2">Michael's Kit — The Lord's Array</h2>
+        <p data-id="47" class="font-sans text-sm mt-4 mb-8" style="color: var(--ink-light);">Primary weapon · Secondary blade · Utility knife · Bow</p>
+
+        <!-- PIECE 1: Arming Sword -->
+        <div data-id="48" class="item-card card-new">
+            <div data-id="49" class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                <div data-id="50">
+                    <h3 data-id="51" class="font-display text-xl font-bold" style="color: var(--forest);">TCS8 Norman / Viking Arming Sword</h3>
+                    <p data-id="52" class="font-sans text-xs mt-1" style="color: var(--ink-light);">Primary Weapon</p>
+                </div>
+                <span data-id="53" class="badge-new self-start">New Ways</span>
+            </div>
+            <div data-id="54" class="detail-grid mb-4">
+                <span data-id="55" class="detail-label">Period</span>
+                <span data-id="56" class="detail-value">11th–13th Century · Oakeshott Type X/XI</span>
+                <span data-id="57" class="detail-label">Source</span>
+                <span data-id="58" class="detail-value">Part of the Tod's Workshop bundle (TCS8 + TC69 + TCP122 + sword bag)</span>
+                <span data-id="59" class="detail-label">USD Price</span>
+                <span data-id="60" class="detail-value font-semibold tabular-nums">~$811 <span data-id="61" class="font-normal text-xs" style="color: var(--ink-light);">(full bundle)</span></span>
+                <span data-id="62" class="detail-label">Link</span>
+                <span data-id="63" class="detail-value text-xs" style="color: var(--forest);">todsworkshop.com</span>
+            </div>
+            <div data-id="64" class="mt-4 pt-4" style="border-top: 1px solid rgba(201,189,164,0.3);">
+                <p data-id="65" class="font-sans text-xs font-semibold uppercase tracking-wider mb-2" style="color: var(--gold);">Period Justification</p>
+                <p data-id="66" class="font-body text-sm leading-relaxed" style="color: var(--ink-light);">The arming sword is the knightly weapon of Norman and continental Europe, adopted by ambitious Hiberno-Norse lords seeking legitimacy in the feudal order. By 1155, a sword of this type was a prestigious marker of warrior status across Britain and Ireland. It says: <em data-id="67">I have one foot in the world that is coming.</em></p>
+            </div>
+        </div>
+
+        <!-- PIECE 2: Langseax -->
+        <div data-id="68" class="item-card card-old">
+            <div data-id="69" class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                <div data-id="70">
+                    <h3 data-id="71" class="font-display text-xl font-bold" style="color: var(--burgundy);">TC126 Decorated Langseax</h3>
+                    <p data-id="72" class="font-sans text-xs mt-1" style="color: var(--ink-light);">Secondary Blade / Sidearm</p>
+                </div>
+                <span data-id="73" class="badge-old self-start">Old Ways</span>
+            </div>
+            <div data-id="74" class="detail-grid mb-4">
+                <span data-id="75" class="detail-label">Period</span>
+                <span data-id="76" class="detail-value">10th–12th Century</span>
+                <span data-id="77" class="detail-label">Blade</span>
+                <span data-id="78" class="detail-value">11.5″ broken back, stiffening taper to the break</span>
+                <span data-id="79" class="detail-label">Grip</span>
+                <span data-id="80" class="detail-value">6.25″ ash &amp; horn, dot-circle motifs, brass rivets</span>
+                <span data-id="81" class="detail-label">Overall</span>
+                <span data-id="82" class="detail-value">17.75″ · 370g</span>
+                <span data-id="83" class="detail-label">Sheath</span>
+                <span data-id="84" class="detail-value">Etched brass plates, carved leather, brass suspension loops — worn front edge-up in authentic Norse fashion</span>
+                <span data-id="85" class="detail-label">Rating</span>
+                <span data-id="86" class="detail-value"><span data-id="87" class="stars">★★★★★</span> <span data-id="88" class="text-xs" style="color: var(--ink-light);">5/5 · 10 reviews</span></span>
+                <span data-id="89" class="detail-label">USD Price</span>
+                <span data-id="90" class="detail-value font-semibold tabular-nums">~$198–$211</span>
+                <span data-id="91" class="detail-label">Source</span>
+                <span data-id="92" class="detail-value text-xs break-all" style="color: var(--forest);">todsworkshop.com/products/langseax-viking-knife-10th-12th-century-copy/</span>
+            </div>
+            <div data-id="93" class="mt-4 pt-4" style="border-top: 1px solid rgba(201,189,164,0.3);">
+                <p data-id="94" class="font-sans text-xs font-semibold uppercase tracking-wider mb-2" style="color: var(--gold);">Period Justification</p>
+                <p data-id="95" class="font-body text-sm leading-relaxed" style="color: var(--ink-light);">The seax is the ancestral Norse sidearm, carried by Gaelic-Norse warriors for centuries before 1155. By the 12th century it was a deliberately old weapon — worn by men who remembered where they came from. This piece, with its brass rivets and dot-circle handle motifs, speaks the visual language of antiquity without apology.</p>
+            </div>
+        </div>
+
+        <!-- PIECE 3: Eating Knife -->
+        <div data-id="96" class="item-card card-utility">
+            <div data-id="97" class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                <div data-id="98">
+                    <h3 data-id="99" class="font-display text-xl font-bold" style="color: var(--ink);">TCP122 Peasant's Eating Knife</h3>
+                    <p data-id="100" class="font-sans text-xs mt-1" style="color: var(--ink-light);">Utility / Eating Knife</p>
+                </div>
+                <span data-id="101" class="badge-utility self-start">Utility</span>
+            </div>
+            <div data-id="102" class="detail-grid mb-4">
+                <span data-id="103" class="detail-label">Period</span>
+                <span data-id="104" class="detail-value">12th–14th Century</span>
+                <span data-id="105" class="detail-label">Source</span>
+                <span data-id="106" class="detail-value">Part of bundle · todsworkshop.com</span>
+                <span data-id="107" class="detail-label">Note</span>
+                <span data-id="108" class="detail-value">Included in bundle. Small, practical, period-correct. Goes unnoticed beside the sword and seax — a working knife, not a display piece. Both old ways and new ways require a knife at table.</span>
+            </div>
+        </div>
+
+        <!-- PIECE 4: Self-Bow -->
+        <div data-id="109" class="item-card card-old">
+            <div data-id="110" class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                <div data-id="111">
+                    <h3 data-id="112" class="font-display text-xl font-bold" style="color: var(--burgundy);">Norse Self-Bow</h3>
+                    <p data-id="113" class="font-sans text-xs mt-1" style="color: var(--ink-light);">Ranged Weapon · WhipperWil Archery Commission</p>
+                </div>
+                <span data-id="114" class="badge-old self-start">Old Ways</span>
+            </div>
+            <div data-id="115" class="detail-grid mb-4">
+                <span data-id="116" class="detail-label">Form</span>
+                <span data-id="117" class="detail-value">D-section self-bow stave · no distinct handgrip · simple self-nocks</span>
+                <span data-id="118" class="detail-label">Material</span>
+                <span data-id="119" class="detail-value">Ash / Osage Orange — functionally superior to period yew in compression and elasticity; the Norse used yew due to geographic availability, not because it was the optimal material</span>
+                <span data-id="120" class="detail-label">Draw Weight</span>
+                <span data-id="121" class="detail-value">40–50 lbs at draw length (to be fitted in person)</span>
+                <span data-id="122" class="detail-label">Length</span>
+                <span data-id="123" class="detail-value">~62–70 inches (fitted to archer)</span>
+                <span data-id="124" class="detail-label">Arrows</span>
+                <span data-id="125" class="detail-value">Hand-spined matched wood shafts, grain-weighted within 10gr, natural fletching, hardwood self-nocks</span>
+                <span data-id="126" class="detail-label">USD Price</span>
+                <span data-id="127" class="detail-value font-semibold tabular-nums">$300–$350 <span data-id="128" class="font-normal text-xs" style="color: var(--ink-light);">(bow)</span> · $60 <span data-id="129" class="font-normal text-xs" style="color: var(--ink-light);">per half-dozen matched arrows</span></span>
+                <span data-id="130" class="detail-label">Source</span>
+                <span data-id="131" class="detail-value">WhipperWil Archery · Elizabethtown, PA · ~90 min from Bedford · (954) 254-6067</span>
+                <span data-id="132" class="detail-label">Commission</span>
+                <span data-id="133" class="detail-value">Custom commission — visit in person for draw-length fitting</span>
+            </div>
+            <div data-id="134" class="mt-4 pt-4 space-y-3" style="border-top: 1px solid rgba(201,189,164,0.3);">
+                <div data-id="135">
+                    <p data-id="136" class="font-sans text-xs font-semibold uppercase tracking-wider mb-2" style="color: var(--gold);">Archaeological Basis</p>
+                    <p data-id="137" class="font-body text-sm leading-relaxed" style="color: var(--ink-light);">Self-bow finds from Dublin, Waterford, and Hedeby confirm this form in the Hiberno-Norse world.</p>
+                </div>
+                <div data-id="138" class="px-4 py-3 rounded" style="background: rgba(92,26,26,0.04); border-left: 2px solid var(--burgundy);">
+                    <p data-id="139" class="font-sans text-xs font-semibold mb-1" style="color: var(--burgundy);">Note on the Longbow</p>
+                    <p data-id="140" class="font-body text-sm" style="color: var(--ink-light);">The war longbow is a specifically Welsh/English identity piece — wrong for a Norse-Gaelic persona. The self-bow is the correct ancestral form.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div data-id="141" class="manuscript-divider"></div>
+
+    <!-- ===== SECTION 3: JADE'S KIT ===== -->
+    <section data-id="142" id="jade" class="scroll-mt-20 mb-6">
+        <h2 data-id="143" class="chapter-heading text-2xl md:text-3xl mb-2">Jade's Kit — The Lady's Bearing</h2>
+        <p data-id="144" class="font-display text-base italic mt-4 mb-8" style="color: var(--ink-light);">Two pieces. Understated in count. Memorable in presence.</p>
+
+        <!-- PIECE 1: Antenna Dagger -->
+        <div data-id="145" class="item-card card-old">
+            <div data-id="146" class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                <div data-id="147">
+                    <h3 data-id="148" class="font-display text-xl font-bold" style="color: var(--burgundy);">TC69 Viking Antenna Quillon Dagger</h3>
+                    <p data-id="149" class="font-sans text-xs mt-1" style="color: var(--ink-light);">Sidearm / Statement Piece</p>
+                </div>
+                <span data-id="150" class="badge-old self-start">Old Ways</span>
+            </div>
+            <div data-id="151" class="detail-grid mb-4">
+                <span data-id="152" class="detail-label">Period</span>
+                <span data-id="153" class="detail-value">10th–12th Century</span>
+                <span data-id="154" class="detail-label">Form</span>
+                <span data-id="155" class="detail-value">Antenna-style quillons — bent, tipped — a deliberately archaic form reaching back to Iron Age and early Viking Age weapon tradition. Slender blade, striking silhouette.</span>
+                <span data-id="156" class="detail-label">Source</span>
+                <span data-id="157" class="detail-value">Assigned from bundle · todsworkshop.com</span>
+            </div>
+            <div data-id="158" class="mt-4 pt-4" style="border-top: 1px solid rgba(201,189,164,0.3);">
+                <p data-id="159" class="font-sans text-xs font-semibold uppercase tracking-wider mb-2" style="color: var(--gold);">Period Justification</p>
+                <p data-id="160" class="font-body text-sm leading-relaxed" style="color: var(--ink-light);">Antenna-form daggers are an <em data-id="161">old ways</em> piece par excellence. Their design predates 1155 by centuries. A Hiberno-Norse woman carrying one signals deep ancestral identity, not continental fashion. The most visually distinctive piece in the entire kit.</p>
+            </div>
+        </div>
+
+        <!-- PIECE 2: Horn Eating Knife -->
+        <div data-id="162" class="item-card card-old">
+            <div data-id="163" class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                <div data-id="164">
+                    <h3 data-id="165" class="font-display text-xl font-bold" style="color: var(--burgundy);">TCP7 Early Medieval Ribbed Horn Eating Knife</h3>
+                    <p data-id="166" class="font-sans text-xs mt-1" style="color: var(--ink-light);">Eating Knife / Companion Piece</p>
+                </div>
+                <span data-id="167" class="badge-old self-start" style="font-size: 9px;">Old Ways <span data-id="168" class="font-normal" style="letter-spacing: 0.02em;">(aesthetic)</span></span>
+            </div>
+            <div data-id="169" class="detail-grid mb-4">
+                <span data-id="170" class="detail-label">Period</span>
+                <span data-id="171" class="detail-value">12th–14th Century</span>
+                <span data-id="172" class="detail-label">Overall</span>
+                <span data-id="173" class="detail-value">8″ (20cm)</span>
+                <span data-id="174" class="detail-label">Blade</span>
+                <span data-id="175" class="detail-value">4″ carbon steel</span>
+                <span data-id="176" class="detail-label">Handle</span>
+                <span data-id="177" class="detail-value">Ribbed turned horn (black), 4″</span>
+                <span data-id="178" class="detail-label">Sheath</span>
+                <span data-id="179" class="detail-value">Veg-tan leather</span>
+                <span data-id="180" class="detail-label">Rating</span>
+                <span data-id="181" class="detail-value"><span data-id="182" class="stars">★★★★★</span> <span data-id="183" class="text-xs" style="color: var(--ink-light);">5/5 · 18 reviews</span></span>
+                <span data-id="184" class="detail-label">USD Price</span>
+                <span data-id="185" class="detail-value font-semibold tabular-nums">~$52</span>
+                <span data-id="186" class="detail-label">Source</span>
+                <span data-id="187" class="detail-value text-xs break-all" style="color: var(--forest);">todsworkshop.com/products/early-medieval-eating-knives-12thc-14thc-wood-ribbed-handle-tcp7/</span>
+            </div>
+            <div data-id="188" class="mt-4 pt-4" style="border-top: 1px solid rgba(201,189,164,0.3);">
+                <p data-id="189" class="font-sans text-xs font-semibold uppercase tracking-wider mb-2" style="color: var(--gold);">Visual Harmony</p>
+                <p data-id="190" class="font-body text-sm leading-relaxed" style="color: var(--ink-light);">The dark ribbed horn handle creates visual harmony with the TC69's dark metal and archaic lines. Both pieces speak the same aesthetic language — refined without ostentation, old without affectation.</p>
+            </div>
+        </div>
+    </section>
+
+    <div data-id="191" class="manuscript-divider"></div>
+
+    <!-- ===== SECTION 4: JADE'S BOW ===== -->
+    <section data-id="192" id="jade-bow" class="scroll-mt-20 mb-6">
+        <h2 data-id="193" class="chapter-heading text-2xl md:text-3xl mb-2">Jade's Bow — Norse Self-Bow Commission</h2>
+        <p data-id="194" class="font-sans text-sm mt-4 mb-8" style="color: var(--ink-light);">Same form as Michael's bow — fitted separately</p>
+
+        <div data-id="195" class="item-card card-old">
+            <div data-id="196" class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                <div data-id="197">
+                    <h3 data-id="198" class="font-display text-xl font-bold" style="color: var(--burgundy);">Norse Self-Bow — Fitted Commission</h3>
+                    <p data-id="199" class="font-sans text-xs mt-1" style="color: var(--ink-light);">Ranged Weapon · WhipperWil Archery</p>
+                </div>
+                <span data-id="200" class="badge-old self-start">Old Ways</span>
+            </div>
+            <div data-id="201" class="detail-grid mb-4">
+                <span data-id="202" class="detail-label">Form</span>
+                <span data-id="203" class="detail-value">D-section self-bow stave · no distinct handgrip · simple self-nocks</span>
+                <span data-id="204" class="detail-label">Material</span>
+                <span data-id="205" class="detail-value">Ash / Osage Orange</span>
+                <span data-id="206" class="detail-label">Draw Weight</span>
+                <span data-id="207" class="detail-value font-semibold">28–35 lbs at draw length</span>
+                <span data-id="208" class="detail-label">Length</span>
+                <span data-id="209" class="detail-value">Fitted to archer</span>
+                <span data-id="210" class="detail-label">USD Price</span>
+                <span data-id="211" class="detail-value font-semibold tabular-nums">$300–$350</span>
+                <span data-id="212" class="detail-label">Source</span>
+                <span data-id="213" class="detail-value">WhipperWil Archery · Elizabethtown, PA · (954) 254-6067</span>
+                <span data-id="214" class="detail-label">Note</span>
+                <span data-id="215" class="detail-value">Same maker, same material, same ancestral form. Fitted separately in person for draw length and weight.</span>
+            </div>
+        </div>
+    </section>
+
+    <div data-id="216" class="manuscript-divider"></div>
+
+    <!-- ===== SECTION 5: COST SUMMARY ===== -->
+    <section data-id="217" id="summary" class="scroll-mt-20 mb-6">
+        <h2 data-id="218" class="chapter-heading text-2xl md:text-3xl mb-8">Complete Kit — Cost Summary</h2>
+
+        <div data-id="219" class="overflow-x-auto rounded-lg" style="border: 1px solid rgba(201,189,164,0.4);">
+            <table data-id="220" class="kit-table">
+                <thead data-id="221">
+                    <tr data-id="222">
+                        <th data-id="223">Item</th>
+                        <th data-id="224">Code</th>
+                        <th data-id="225">Who</th>
+                        <th data-id="226" class="text-right">USD Price</th>
+                        <th data-id="227">Source</th>
+                    </tr>
+                </thead>
+                <tbody data-id="228">
+                    <tr data-id="229">
+                        <td data-id="230" class="font-medium">Bundle: Sword + Dagger + Eating Knife + Bag</td>
+                        <td data-id="231" class="text-xs whitespace-nowrap">TCS8 / TC69 / TCP122</td>
+                        <td data-id="232">Both</td>
+                        <td data-id="233" class="text-right tabular-nums font-semibold">~$811</td>
+                        <td data-id="234" class="text-xs" style="color: var(--forest);">todsworkshop.com</td>
+                    </tr>
+                    <tr data-id="235">
+                        <td data-id="236" class="font-medium">Decorated Langseax</td>
+                        <td data-id="237" class="text-xs">TC126</td>
+                        <td data-id="238">Michael</td>
+                        <td data-id="239" class="text-right tabular-nums font-semibold">~$198–$211</td>
+                        <td data-id="240" class="text-xs" style="color: var(--forest);">todsworkshop.com</td>
+                    </tr>
+                    <tr data-id="241">
+                        <td data-id="242" class="font-medium">Ribbed Horn Eating Knife</td>
+                        <td data-id="243" class="text-xs">TCP7</td>
+                        <td data-id="244">Jade</td>
+                        <td data-id="245" class="text-right tabular-nums font-semibold">~$52</td>
+                        <td data-id="246" class="text-xs" style="color: var(--forest);">todsworkshop.com</td>
+                    </tr>
+                    <tr data-id="247">
+                        <td data-id="248" class="font-medium">Norse Self-Bow (×2)</td>
+                        <td data-id="249" class="text-xs">—</td>
+                        <td data-id="250">Both</td>
+                        <td data-id="251" class="text-right tabular-nums font-semibold">~$600–$700</td>
+                        <td data-id="252" class="text-xs" style="color: var(--forest);">whipperwilarchery.com</td>
+                    </tr>
+                    <tr data-id="253">
+                        <td data-id="254" class="font-medium">Matched Arrows (2 doz total)</td>
+                        <td data-id="255" class="text-xs">—</td>
+                        <td data-id="256">Both</td>
+                        <td data-id="257" class="text-right tabular-nums font-semibold">~$240</td>
+                        <td data-id="258" class="text-xs" style="color: var(--forest);">whipperwilarchery.com</td>
+                    </tr>
+                </tbody>
+                <tfoot data-id="259">
+                    <tr data-id="260">
+                        <td data-id="261" colspan="3" class="font-bold text-sm uppercase tracking-wider">Total</td>
+                        <td data-id="262" class="text-right tabular-nums text-base">~$1,901–$2,014</td>
+                        <td data-id="263">—</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div data-id="264" class="mt-5 px-4 py-3 rounded" style="background: rgba(139,118,50,0.06); border: 1px solid rgba(139,118,50,0.12);">
+            <p data-id="265" class="font-sans text-xs leading-relaxed" style="color: var(--ink-light);">
+                GBP prices converted at approx. £1 = $1.363 USD (May 2026). Bow prices are estimates pending in-person commission — call WhipperWil at <strong data-id="266">(954) 254-6067</strong> to confirm. Exchange rate fluctuates — verify at time of purchase.
+            </p>
+        </div>
+    </section>
+
+    <div data-id="267" class="manuscript-divider"></div>
+
+    <!-- ===== SECTION 6: SOURCING ===== -->
+    <section data-id="268" id="sourcing" class="scroll-mt-20 mb-6">
+        <h2 data-id="269" class="chapter-heading text-2xl md:text-3xl mb-8">Sourcing</h2>
+
+        <div data-id="270" class="space-y-8">
+            <!-- Tod's Workshop -->
+            <div data-id="271" class="item-card" style="border-left: 3px solid var(--forest);">
+                <div data-id="272" class="flex items-start gap-3 mb-3">
+                    <i data-id="273" data-lucide="anvil" class="w-5 h-5 mt-1 flex-shrink-0" style="color: var(--forest);"></i>
+                    <div data-id="274">
+                        <h3 data-id="275" class="font-display text-lg font-bold" style="color: var(--forest);">Tod's Workshop / Tod Cutler</h3>
+                        <p data-id="276" class="font-sans text-xs mt-0.5" style="color: var(--ink-light);">todsworkshop.com</p>
+                    </div>
+                </div>
+                <p data-id="277" class="font-body text-sm leading-relaxed" style="color: var(--ink);">
+                    British maker. All bladed pieces in this kit are from the Tod Cutler production line — small-batch, hand-finished pieces made under Tod's direct oversight. Not mass production. The result is a kit with consistent fit, finish, and material quality across every piece. A deliberate choice: cohesion across a kit is its own form of historical authenticity.
+                </p>
+            </div>
+
+            <!-- WhipperWil -->
+            <div data-id="278" class="item-card" style="border-left: 3px solid var(--burgundy);">
+                <div data-id="279" class="flex items-start gap-3 mb-3">
+                    <i data-id="280" data-lucide="target" class="w-5 h-5 mt-1 flex-shrink-0" style="color: var(--burgundy);"></i>
+                    <div data-id="281">
+                        <h3 data-id="282" class="font-display text-lg font-bold" style="color: var(--burgundy);">WhipperWil Archery</h3>
+                        <p data-id="283" class="font-sans text-xs mt-0.5" style="color: var(--ink-light);">Elizabethtown, PA · ~90 min from Bedford</p>
+                    </div>
+                </div>
+                <p data-id="284" class="font-body text-sm leading-relaxed" style="color: var(--ink);">
+                    Father and son traditional bowyer shop approximately 90 minutes from Bedford, PA. Custom self-bows built to the individual archer's draw length and weight. Hand-spined matched arrows. Everything made in house. Call <strong data-id="285">(954) 254-6067</strong> to arrange a commission visit.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div data-id="286" class="manuscript-divider-alt"></div>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer data-id="287" class="py-10 text-center" style="background: linear-gradient(180deg, transparent, rgba(44,74,46,0.04));">
+    <p data-id="288" class="font-display text-sm tracking-wider mb-1" style="color: var(--ink-light);">Hiberno-Norse Kit · <em data-id="289">c.</em> 1155 AD · Arms Reference</p>
+    <p data-id="290" class="font-sans text-xs" style="color: var(--parchment-500, #b0a188);">2026</p>
+    <p data-id="291" class="font-sans text-xs mt-4" style="color: var(--parchment-500, #b0a188);">Made by Copilot</p>
+</footer>
+
+<script>
+    lucide.createIcons();
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', function() {
+        if (mobileMenu.classList.contains('menu-hidden')) {
+            mobileMenu.classList.remove('menu-hidden');
+            mobileMenu.classList.add('menu-visible');
+        } else {
+            mobileMenu.classList.remove('menu-visible');
+            mobileMenu.classList.add('menu-hidden');
+        }
+    });
+
+    // Close mobile menu when a link is clicked
+    document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.remove('menu-visible');
+            mobileMenu.classList.add('menu-hidden');
+        });
+    });
+</script>
+</body>
+</html>
