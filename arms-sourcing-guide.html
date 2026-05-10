@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>Clan Sealgair Arms Sourcing Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        iron: '#2C2C2C',
+                        ironDark: '#1a1a1a',
+                        ironCard: '#1e1e1e',
+                        saffron: '#D4A017',
+                        saffronDark: '#b8890f',
+                        cream: '#F5F0E1',
+                        creamMuted: '#b0a98e',
+                        woad: '#2B4570',
+                        russet: '#8B5E3C',
+                        madder: '#A52A2A',
+                        stroke: '#3a3a3a',
+                    },
+                    fontFamily: {
+                        body: ['system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['"IBM Plex Mono"', 'monospace'],
+                    },
+                },
+            },
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style>
+        :root {
+            --iron: #2C2C2C;
+            --iron-dark: #1a1a1a;
+            --iron-card: #1e1e1e;
+            --saffron: #D4A017;
+            --cream: #F5F0E1;
+            --cream-muted: #b0a98e;
+            --woad: #2B4570;
+            --russet: #8B5E3C;
+            --madder: #A52A2A;
+            --stroke: #3a3a3a;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--iron);
+            color: var(--cream);
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+        }
+        .kit-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+        }
+        .kit-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,160,23,0.15);
+        }
+        .kit-card.hidden-card {
+            display: none;
+        }
+        .filter-pill {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+        .filter-pill.active {
+            background: var(--saffron);
+            color: var(--iron-dark);
+            border-color: var(--saffron);
+        }
+        .buy-btn {
+            transition: all 0.2s ease;
+        }
+        .buy-btn:hover {
+            background: var(--saffron);
+            color: var(--iron-dark);
+        }
+        .auth-segment {
+            width: 28px;
+            height: 10px;
+            border-radius: 2px;
+            transition: background 0.3s;
+        }
+        .vendor-table th {
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--cream-muted);
+            padding: 0.5rem 0.65rem;
+            border-bottom: 1px solid var(--stroke);
+        }
+        .vendor-table td {
+            font-size: 0.8rem;
+            padding: 0.5rem 0.65rem;
+            border-bottom: 1px solid rgba(58,58,58,0.5);
+            color: var(--cream);
+            vertical-align: top;
+        }
+        .vendor-table tr:last-child td {
+            border-bottom: none;
+        }
+        .parchment-panel {
+            background: linear-gradient(135deg, rgba(30,30,30,0.95), rgba(44,44,44,0.9));
+            border: 1px solid var(--saffron);
+            border-radius: 10px;
+            position: relative;
+        }
+        .parchment-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 20% 20%, rgba(212,160,23,0.04), transparent 70%);
+            border-radius: 10px;
+            pointer-events: none;
+        }
+        .nav-link {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.35rem 0;
+            position: relative;
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: var(--saffron); }
+        .nav-link.active-link {
+            color: var(--saffron);
+        }
+        .nav-link.active-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0; right: 0;
+            height: 2px;
+            background: var(--saffron);
+            border-radius: 1px;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--iron-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--stroke); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        @media (max-width: 767px) {
+            .vendor-table { font-size: 0.75rem; }
+            .vendor-table th, .vendor-table td { padding: 0.4rem 0.5rem; }
+        }
+    </style>
+</head>
+<body data-id="0" class="font-body">
+
+<app-icon data-id="1" hidden data-icon="sword" data-palette="Dark"></app-icon>
+
+<!-- NAVIGATION BAR -->
+<nav data-id="2" id="navbar-k3f9" class="sticky top-0 z-50 bg-ironDark border-b border-stroke" style="height:56px;">
+    <div data-id="3" class="max-w-7xl mx-auto h-full flex items-center justify-between px-4 md:px-6">
+        <!-- Logo -->
+        <a data-id="4" href="https://deargmacdubh.github.io/SealgairTracker/" class="flex items-center gap-2 text-saffron font-bold text-lg tracking-wide no-underline" id="logo-link-a1b2">
+            🦅 <span data-id="5">Sealgair</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div data-id="6" class="hidden md:flex items-center gap-6" id="desktop-nav-c4d5">
+            <a data-id="7" href="https://deargmacdubh.github.io/SealgairTracker/" class="nav-link">Kit Ledger</a>
+            <a data-id="8" href="shield-blueprint.html" class="nav-link">Shield Blueprint</a>
+            <a data-id="9" href="#" class="nav-link active-link">Arms Guide</a>
+            <a data-id="10" href="https://deargmacdubh.github.io/SealgairTracker/#dashboard-section" class="nav-link">Dashboard</a>
+            <a data-id="11" href="https://deargmacdubh.github.io/SealgairTracker/#budget-section" class="nav-link">Budget</a>
+        </div>
+
+        <!-- Motto (Desktop) -->
+        <div data-id="12" class="hidden md:block text-creamMuted italic text-sm tracking-wide" id="motto-e6f7">
+            Eadar Nèamh is Ifrinn
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button data-id="13" id="mobile-menu-btn-g8h9" class="md:hidden p-2 text-cream min-h-[44px] min-w-[44px] flex items-center justify-center">
+            <i data-id="14" data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div data-id="15" id="mobile-menu-i0j1" class="hidden fixed inset-0 bg-ironDark z-50 flex flex-col p-6">
+        <div data-id="16" class="flex items-center justify-between mb-8">
+            <span data-id="17" class="text-saffron font-bold text-lg">🦅 Sealgair</span>
+            <button data-id="18" id="mobile-menu-close-k2l3" class="p-2 text-cream min-h-[44px] min-w-[44px] flex items-center justify-center">
+                <i data-id="19" data-lucide="x" class="w-6 h-6"></i>
+            </button>
+        </div>
+        <div data-id="20" class="flex flex-col gap-4">
+            <a data-id="21" href="https://deargmacdubh.github.io/SealgairTracker/" class="nav-link text-lg">Kit Ledger</a>
+            <a data-id="22" href="shield-blueprint.html" class="nav-link text-lg">Shield Blueprint</a>
+            <a data-id="23" href="#" class="nav-link active-link text-lg">Arms Guide</a>
+            <a data-id="24" href="https://deargmacdubh.github.io/SealgairTracker/#dashboard-section" class="nav-link text-lg">Dashboard</a>
+            <a data-id="25" href="https://deargmacdubh.github.io/SealgairTracker/#budget-section" class="nav-link text-lg">Budget</a>
+        </div>
+        <div data-id="26" class="mt-auto text-creamMuted italic text-sm text-center">Eadar Nèamh is Ifrinn</div>
+    </div>
+</nav>
+
+<main data-id="27" class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pb-16">
+
+    <!-- PAGE HEADER -->
+    <section data-id="28" id="page-header-m4n5" class="pt-10 pb-6 text-center">
+        <h1 data-id="29" class="text-2xl md:text-3xl lg:text-4xl font-bold text-saffron tracking-wide mb-3">
+            ⚔️ Clan Sealgair — Arms &amp; Armour Sourcing Guide
+        </h1>
+        <p data-id="30" class="text-cream italic text-sm md:text-base mb-1">Norse-Gaelic Kit · c. 1155 CE · Knoydart, Scotland</p>
+        <p data-id="31" class="text-creamMuted italic text-xs md:text-sm">Buyer's reference for historically appropriate reproduction arms</p>
+        <hr data-id="32" class="mt-6 border-saffron opacity-40 max-w-md mx-auto" />
+    </section>
+
+    <!-- BUDGET SUMMARY BAR -->
+    <section data-id="33" id="budget-bar-o6p7" class="mb-6">
+        <div data-id="34" class="bg-ironCard border border-stroke rounded-lg px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div data-id="35" class="flex items-center gap-2 text-cream">
+                <i data-id="36" data-lucide="calculator" class="w-5 h-5 text-saffron"></i>
+                <span data-id="37" class="text-sm font-semibold uppercase tracking-wide text-creamMuted">Estimated Total Kit Cost</span>
+            </div>
+            <div data-id="38" class="font-mono text-lg md:text-xl font-bold text-saffron tabular-nums" id="budget-total-q8r9">
+                $753 – $2,883
+            </div>
+        </div>
+    </section>
+
+    <!-- FILTER BAR -->
+    <section data-id="39" id="filter-bar-s0t1" class="mb-8 flex flex-wrap gap-2 justify-center">
+        <button data-id="40" class="filter-pill active px-4 py-2 rounded-full text-sm font-semibold border border-stroke" data-filter="ALL">ALL</button>
+        <button data-id="41" class="filter-pill px-4 py-2 rounded-full text-sm font-semibold border border-stroke text-cream bg-transparent" data-filter="WEAPON">
+            <span data-id="42" class="inline-block w-2 h-2 rounded-full bg-woad mr-1.5"></span>WEAPONS
+        </button>
+        <button data-id="43" class="filter-pill px-4 py-2 rounded-full text-sm font-semibold border border-stroke text-cream bg-transparent" data-filter="ARMOUR">
+            <span data-id="44" class="inline-block w-2 h-2 rounded-full bg-russet mr-1.5"></span>ARMOUR
+        </button>
+        <button data-id="45" class="filter-pill px-4 py-2 rounded-full text-sm font-semibold border border-stroke text-cream bg-transparent" data-filter="BLADE">
+            <span data-id="46" class="inline-block w-2 h-2 rounded-full bg-madder mr-1.5"></span>BLADES
+        </button>
+    </section>
+
+    <!-- KIT CARDS GRID -->
+    <div data-id="47" id="cards-grid-u2v3" class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+
+        <!-- CARD 1: Arming Sword -->
+        <article data-id="48" class="kit-card bg-ironCard border border-stroke rounded-xl overflow-hidden" data-category="WEAPON" data-low="175" data-high="900">
+            <div data-id="49" class="px-5 pt-5 pb-3 border-b border-stroke">
+                <div data-id="50" class="flex items-center justify-between mb-2">
+                    <h2 data-id="51" class="text-saffron font-bold text-sm md:text-base uppercase tracking-wider">Arming Sword (Type X / Xa)</h2>
+                    <span data-id="52" class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-woad text-cream">Weapon</span>
+                </div>
+            </div>
+            <div data-id="53" class="px-5 py-4 space-y-4">
+                <!-- Historical Spec -->
+                <div data-id="54">
+                    <h3 data-id="55" class="text-xs uppercase tracking-wider text-creamMuted font-semibold mb-1.5 flex items-center gap-1.5">
+                        <i data-id="56" data-lucide="scroll-text" class="w-3.5 h-3.5"></i> Historical Spec
+                    </h3>
+                    <p data-id="57" class="text-sm text-cream leading-relaxed">Oakeshott Type X or Xa — wide fuller, single-handed, 30–32″ blade, lobed or cocked-hat pommel, straight quillons. Weight under 3 lbs. No hand-and-a-half. Period: 10th–12th century. Norse-Gaelic warriors carried swords as status symbols.</p>
+                </div>
+                <!-- Vendor Table -->
+                <div data-id="58" class="overflow-x-auto rounded-lg border border-stroke">
+                    <table data-id="59" class="vendor-table w-full text-left">
+                        <thead data-id="60" class="bg-ironDark">
+                            <tr data-id="61">
+                                <th data-id="62">Vendor</th>
+                                <th data-id="63">Item</th>
+                                <th data-id="64">Price</th>
+                                <th data-id="65">Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody data-id="66">
+                            <tr data-id="67"><td data-id="68" class="font-medium">Windlass Steelcrafts</td><td data-id="69">Maldon Viking Sword (Type X)</td><td data-id="70" class="font-mono tabular-nums text-saffron whitespace-nowrap">$349</td><td data-id="71" class="text-creamMuted">Battle-ready, high carbon, good historical profile</td></tr>
+                            <tr data-id="72" class="bg-iron/30"><td data-id="73" class="font-medium">Hanwei / CAS</td><td data-id="74">Practical Viking Sword</td><td data-id="75" class="font-mono tabular-nums text-saffron whitespace-nowrap">$175–$500</td><td data-id="76" class="text-creamMuted">Wide range; Trondheim model highly regarded</td></tr>
+                            <tr data-id="77"><td data-id="78" class="font-medium">Kingston Arms</td><td data-id="79">Tourney Viking (blunt)</td><td data-id="80" class="font-mono tabular-nums text-saffron whitespace-nowrap">$199–$249</td><td data-id="81" class="text-creamMuted">Best for reenactment sparring</td></tr>
+                            <tr data-id="82" class="bg-iron/30"><td data-id="83" class="font-medium">Legacy Arms</td><td data-id="84">River Witham Sword</td><td data-id="85" class="font-mono tabular-nums text-saffron whitespace-nowrap">$299</td><td data-id="86" class="text-creamMuted">Based on Thames find, archaeologically solid</td></tr>
+                            <tr data-id="87"><td data-id="88" class="font-medium">Albion</td><td data-id="89">Various Type X/XI</td><td data-id="90" class="font-mono tabular-nums text-saffron whitespace-nowrap">$600–$900</td><td data-id="91" class="text-creamMuted">Premium — closest to museum quality</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Authenticity Rating -->
+                <div data-id="92" class="flex items-center justify-between">
+                    <div data-id="93" class="flex items-center gap-2">
+                        <span data-id="94" class="text-xs uppercase tracking-wider text-creamMuted font-semibold">Authenticity</span>
+                        <div data-id="95" class="flex gap-1">
+                            <div data-id="96" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="97" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="98" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="99" class="auth-segment" style="background:#3a3a3a;"></div>
+                            <div data-id="100" class="auth-segment" style="background:#3a3a3a;"></div>
+                        </div>
+                        <span data-id="101" class="text-xs font-mono text-creamMuted">3/5</span>
+                    </div>
+                    <span data-id="102" class="text-xs font-mono text-creamMuted">$175 – $900</span>
+                </div>
+                <!-- Buy Button -->
+                <a data-id="103" href="https://www.kultofathena.com/category/viking-swords/" target="_blank" rel="noopener noreferrer" class="buy-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-saffron text-saffron text-sm font-semibold no-underline min-h-[44px]">
+                    <i data-id="104" data-lucide="external-link" class="w-4 h-4"></i> Browse Viking Swords
+                </a>
+            </div>
+        </article>
+
+        <!-- CARD 2: Bearded Axe -->
+        <article data-id="105" class="kit-card bg-ironCard border border-stroke rounded-xl overflow-hidden" data-category="WEAPON" data-low="49" data-high="204">
+            <div data-id="106" class="px-5 pt-5 pb-3 border-b border-stroke">
+                <div data-id="107" class="flex items-center justify-between mb-2">
+                    <h2 data-id="108" class="text-saffron font-bold text-sm md:text-base uppercase tracking-wider">Bearded Axe (Skeggöx)</h2>
+                    <span data-id="109" class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-woad text-cream">Weapon</span>
+                </div>
+            </div>
+            <div data-id="110" class="px-5 py-4 space-y-4">
+                <div data-id="111">
+                    <h3 data-id="112" class="text-xs uppercase tracking-wider text-creamMuted font-semibold mb-1.5 flex items-center gap-1.5">
+                        <i data-id="113" data-lucide="scroll-text" class="w-3.5 h-3.5"></i> Historical Spec
+                    </h3>
+                    <p data-id="114" class="text-sm text-cream leading-relaxed">Single-bit bearded axe, 6–8″ cutting edge, ash or hickory haft 24–30″ long. M-type or F-type head (Petersen classification). Somerled's men would have carried these as primary weapons. Avoid fantasy "battle axe" double-bit styles — those are not period Norse.</p>
+                </div>
+                <div data-id="115" class="overflow-x-auto rounded-lg border border-stroke">
+                    <table data-id="116" class="vendor-table w-full text-left">
+                        <thead data-id="117" class="bg-ironDark">
+                            <tr data-id="118"><th data-id="119">Vendor</th><th data-id="120">Item</th><th data-id="121">Price</th><th data-id="122">Notes</th></tr>
+                        </thead>
+                        <tbody data-id="123">
+                            <tr data-id="124"><td data-id="125" class="font-medium">Windlass Steelcrafts</td><td data-id="126">Viking Thane Axe</td><td data-id="127" class="font-mono tabular-nums text-saffron whitespace-nowrap">$99</td><td data-id="128" class="text-creamMuted">Good proportions, 1075 carbon steel, authentic profile</td></tr>
+                            <tr data-id="129" class="bg-iron/30"><td data-id="130" class="font-medium">Windlass Steelcrafts</td><td data-id="131">Othala Viking Axe Set</td><td data-id="132" class="font-mono tabular-nums text-saffron whitespace-nowrap">$204</td><td data-id="133" class="text-creamMuted">Includes knife + display box, heirloom quality</td></tr>
+                            <tr data-id="134"><td data-id="135" class="font-medium">Museum Replicas</td><td data-id="136">Viking Throwing Axe</td><td data-id="137" class="font-mono tabular-nums text-saffron whitespace-nowrap">$49</td><td data-id="138" class="text-creamMuted">Budget option, smaller head</td></tr>
+                            <tr data-id="139" class="bg-iron/30"><td data-id="140" class="font-medium">Armory Replicas (eBay)</td><td data-id="141">Viking Skeggöx</td><td data-id="142" class="font-mono tabular-nums text-saffron whitespace-nowrap">~$60</td><td data-id="143" class="text-creamMuted">Entry-level, functional</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div data-id="144" class="flex items-center justify-between">
+                    <div data-id="145" class="flex items-center gap-2">
+                        <span data-id="146" class="text-xs uppercase tracking-wider text-creamMuted font-semibold">Authenticity</span>
+                        <div data-id="147" class="flex gap-1">
+                            <div data-id="148" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="149" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="150" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="151" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="152" class="auth-segment" style="background:#3a3a3a;"></div>
+                        </div>
+                        <span data-id="153" class="text-xs font-mono text-creamMuted">4/5</span>
+                    </div>
+                    <span data-id="154" class="text-xs font-mono text-creamMuted">$49 – $204</span>
+                </div>
+                <a data-id="155" href="https://www.museumreplicas.com/axes" target="_blank" rel="noopener noreferrer" class="buy-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-saffron text-saffron text-sm font-semibold no-underline min-h-[44px]">
+                    <i data-id="156" data-lucide="external-link" class="w-4 h-4"></i> Browse Axes
+                </a>
+            </div>
+        </article>
+
+        <!-- CARD 3: Broad-Bladed Spear -->
+        <article data-id="157" class="kit-card bg-ironCard border border-stroke rounded-xl overflow-hidden" data-category="WEAPON" data-low="55" data-high="145">
+            <div data-id="158" class="px-5 pt-5 pb-3 border-b border-stroke">
+                <div data-id="159" class="flex items-center justify-between mb-2">
+                    <h2 data-id="160" class="text-saffron font-bold text-sm md:text-base uppercase tracking-wider">Broad-Bladed Spear</h2>
+                    <span data-id="161" class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-woad text-cream">Weapon</span>
+                </div>
+            </div>
+            <div data-id="162" class="px-5 py-4 space-y-4">
+                <div data-id="163">
+                    <h3 data-id="164" class="text-xs uppercase tracking-wider text-creamMuted font-semibold mb-1.5 flex items-center gap-1.5">
+                        <i data-id="165" data-lucide="scroll-text" class="w-3.5 h-3.5"></i> Historical Spec
+                    </h3>
+                    <p data-id="166" class="text-sm text-cream leading-relaxed">Broad leaf-shaped or winged spearhead, 6–8′ ash shaft. Petersen Type E or K spearhead. The spear was the most common weapon of Norse and Gaelic warriors — carried by all ranks. Winged spears were high-status. Head only is typical purchase; mount your own ash pole (1-3/8″ socket).</p>
+                </div>
+                <div data-id="167" class="overflow-x-auto rounded-lg border border-stroke">
+                    <table data-id="168" class="vendor-table w-full text-left">
+                        <thead data-id="169" class="bg-ironDark">
+                            <tr data-id="170"><th data-id="171">Vendor</th><th data-id="172">Item</th><th data-id="173">Price</th><th data-id="174">Notes</th></tr>
+                        </thead>
+                        <tbody data-id="175">
+                            <tr data-id="176"><td data-id="177" class="font-medium">Windlass / Museum Replicas</td><td data-id="178">Winged Broad Viking Spear Head</td><td data-id="179" class="font-mono tabular-nums text-saffron whitespace-nowrap">$75</td><td data-id="180" class="text-creamMuted">Hand-forged high carbon, 22.5″ overall, 5″ wings — excellent</td></tr>
+                            <tr data-id="181" class="bg-iron/30"><td data-id="182" class="font-medium">Hanwei</td><td data-id="183">Viking Leaf Spear Head</td><td data-id="184" class="font-mono tabular-nums text-saffron whitespace-nowrap">$63</td><td data-id="185" class="text-creamMuted">Clean leaf profile, good steel</td></tr>
+                            <tr data-id="186"><td data-id="187" class="font-medium">Hanwei</td><td data-id="188">Viking Throwing Spear Head</td><td data-id="189" class="font-mono tabular-nums text-saffron whitespace-nowrap">$69</td><td data-id="190" class="text-creamMuted">Narrower, for angon-style</td></tr>
+                            <tr data-id="191" class="bg-iron/30"><td data-id="192" class="font-medium">Deepeeka</td><td data-id="193">Large Winged Spearhead</td><td data-id="194" class="font-mono tabular-nums text-saffron whitespace-nowrap">$55</td><td data-id="195" class="text-creamMuted">Budget, functional</td></tr>
+                            <tr data-id="196"><td data-id="197" class="font-medium">Kult of Athena</td><td data-id="198">Various spearheads</td><td data-id="199" class="font-mono tabular-nums text-saffron whitespace-nowrap">$25–$130</td><td data-id="200" class="text-creamMuted">Largest selection</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div data-id="201" class="flex items-center justify-between">
+                    <div data-id="202" class="flex items-center gap-2">
+                        <span data-id="203" class="text-xs uppercase tracking-wider text-creamMuted font-semibold">Authenticity</span>
+                        <div data-id="204" class="flex gap-1">
+                            <div data-id="205" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="206" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="207" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="208" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="209" class="auth-segment" style="background:#3a3a3a;"></div>
+                        </div>
+                        <span data-id="210" class="text-xs font-mono text-creamMuted">4/5</span>
+                    </div>
+                    <span data-id="211" class="text-xs font-mono text-creamMuted">$55 – $145</span>
+                </div>
+                <a data-id="212" href="https://www.kultofathena.com/category/spears-spearheads/" target="_blank" rel="noopener noreferrer" class="buy-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-saffron text-saffron text-sm font-semibold no-underline min-h-[44px]">
+                    <i data-id="213" data-lucide="external-link" class="w-4 h-4"></i> Browse Spearheads
+                </a>
+            </div>
+        </article>
+
+        <!-- CARD 4: Seax -->
+        <article data-id="214" class="kit-card bg-ironCard border border-stroke rounded-xl overflow-hidden" data-category="BLADE" data-low="89" data-high="234">
+            <div data-id="215" class="px-5 pt-5 pb-3 border-b border-stroke">
+                <div data-id="216" class="flex items-center justify-between mb-2">
+                    <h2 data-id="217" class="text-saffron font-bold text-sm md:text-base uppercase tracking-wider">Seax (Long Knife / Sidearm)</h2>
+                    <span data-id="218" class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-madder text-cream">Blade</span>
+                </div>
+            </div>
+            <div data-id="219" class="px-5 py-4 space-y-4">
+                <div data-id="220">
+                    <h3 data-id="221" class="text-xs uppercase tracking-wider text-creamMuted font-semibold mb-1.5 flex items-center gap-1.5">
+                        <i data-id="222" data-lucide="scroll-text" class="w-3.5 h-3.5"></i> Historical Spec
+                    </h3>
+                    <p data-id="223" class="text-sm text-cream leading-relaxed">Single-edged, clip-point or straight spine, 10–20″ blade. Worn horizontally on belt at the front. Norse-Gaelic warriors carried these as secondary weapons and tools. Look for: single edge, no crossguard, simple handle of wood/bone/antler, horizontal leather scabbard. The Witham seax from the Thames is a key reference piece.</p>
+                </div>
+                <div data-id="224" class="overflow-x-auto rounded-lg border border-stroke">
+                    <table data-id="225" class="vendor-table w-full text-left">
+                        <thead data-id="226" class="bg-ironDark">
+                            <tr data-id="227"><th data-id="228">Vendor</th><th data-id="229">Item</th><th data-id="230">Price</th><th data-id="231">Notes</th></tr>
+                        </thead>
+                        <tbody data-id="232">
+                            <tr data-id="233"><td data-id="234" class="font-medium">Legacy Arms / CAS</td><td data-id="235">Witham Viking Seax (12″)</td><td data-id="236" class="font-mono tabular-nums text-saffron whitespace-nowrap">$150</td><td data-id="237" class="text-creamMuted">Based on Thames find, 5160 steel, peened tang — top pick</td></tr>
+                            <tr data-id="238" class="bg-iron/30"><td data-id="239" class="font-medium">Hanwei</td><td data-id="240">Viking Seax (18″)</td><td data-id="241" class="font-mono tabular-nums text-saffron whitespace-nowrap">$127</td><td data-id="242" class="text-creamMuted">Longer blade, historically accurate profile</td></tr>
+                            <tr data-id="243"><td data-id="244" class="font-medium">Norse Imports LLC</td><td data-id="245">Seax Archaeological Replica</td><td data-id="246" class="font-mono tabular-nums text-saffron whitespace-nowrap">$234</td><td data-id="247" class="text-creamMuted">Czech-made, spring steel, reenactment-safe blunt</td></tr>
+                            <tr data-id="248" class="bg-iron/30"><td data-id="249" class="font-medium">Windlass</td><td data-id="250">Battlecry Maldon Seax</td><td data-id="251" class="font-mono tabular-nums text-saffron whitespace-nowrap">$189</td><td data-id="252" class="text-creamMuted">Good profile, battle-ready</td></tr>
+                            <tr data-id="253"><td data-id="254" class="font-medium">Windlass</td><td data-id="255">Huntsman's Hadseax</td><td data-id="256" class="font-mono tabular-nums text-saffron whitespace-nowrap">$89</td><td data-id="257" class="text-creamMuted">Shorter utility version</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div data-id="258" class="flex items-center justify-between">
+                    <div data-id="259" class="flex items-center gap-2">
+                        <span data-id="260" class="text-xs uppercase tracking-wider text-creamMuted font-semibold">Authenticity</span>
+                        <div data-id="261" class="flex gap-1">
+                            <div data-id="262" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="263" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="264" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="265" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="266" class="auth-segment" style="background:#3a3a3a;"></div>
+                        </div>
+                        <span data-id="267" class="text-xs font-mono text-creamMuted">4/5</span>
+                    </div>
+                    <span data-id="268" class="text-xs font-mono text-creamMuted">$89 – $234</span>
+                </div>
+                <a data-id="269" href="https://www.kultofathena.com/category/seax/" target="_blank" rel="noopener noreferrer" class="buy-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-saffron text-saffron text-sm font-semibold no-underline min-h-[44px]">
+                    <i data-id="270" data-lucide="external-link" class="w-4 h-4"></i> Browse Seaxes
+                </a>
+            </div>
+        </article>
+
+        <!-- CARD 5: Belt Knife -->
+        <article data-id="271" class="kit-card bg-ironCard border border-stroke rounded-xl overflow-hidden" data-category="BLADE" data-low="25" data-high="150">
+            <div data-id="272" class="px-5 pt-5 pb-3 border-b border-stroke">
+                <div data-id="273" class="flex items-center justify-between mb-2">
+                    <h2 data-id="274" class="text-saffron font-bold text-sm md:text-base uppercase tracking-wider">Eating / Belt Knife (Biodag)</h2>
+                    <span data-id="275" class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-madder text-cream">Blade</span>
+                </div>
+            </div>
+            <div data-id="276" class="px-5 py-4 space-y-4">
+                <div data-id="277">
+                    <h3 data-id="278" class="text-xs uppercase tracking-wider text-creamMuted font-semibold mb-1.5 flex items-center gap-1.5">
+                        <i data-id="279" data-lucide="scroll-text" class="w-3.5 h-3.5"></i> Historical Spec
+                    </h3>
+                    <p data-id="280" class="text-sm text-cream leading-relaxed">Small utility knife, 3–6″ blade, worn on belt. Every free person carried one. Plain handle of antler, wood, or bone. No guard. Simple leather sheath. This is distinct from the seax — it's a tool, not a weapon. Any good-quality small Norse or medieval utility knife will do.</p>
+                </div>
+                <div data-id="281" class="overflow-x-auto rounded-lg border border-stroke">
+                    <table data-id="282" class="vendor-table w-full text-left">
+                        <thead data-id="283" class="bg-ironDark">
+                            <tr data-id="284"><th data-id="285">Vendor</th><th data-id="286">Item</th><th data-id="287">Price</th><th data-id="288">Notes</th></tr>
+                        </thead>
+                        <tbody data-id="289">
+                            <tr data-id="290"><td data-id="291" class="font-medium">Windlass</td><td data-id="292">Midgard Viking Knife</td><td data-id="293" class="font-mono tabular-nums text-saffron whitespace-nowrap">$69</td><td data-id="294" class="text-creamMuted">Good proportions, runic pattern on blade</td></tr>
+                            <tr data-id="295" class="bg-iron/30"><td data-id="296" class="font-medium">Legacy Arms</td><td data-id="297">Viking Utility Knife (Seax)</td><td data-id="298" class="font-mono tabular-nums text-saffron whitespace-nowrap">$61</td><td data-id="299" class="text-creamMuted">Simple, functional, leather sheath included</td></tr>
+                            <tr data-id="300"><td data-id="301" class="font-medium">Windlass</td><td data-id="302">Erik the Red Knife</td><td data-id="303" class="font-mono tabular-nums text-saffron whitespace-nowrap">$15–$25</td><td data-id="304" class="text-creamMuted">Letter opener scale but usable as display</td></tr>
+                            <tr data-id="305" class="bg-iron/30"><td data-id="306" class="font-medium">Various Etsy smiths</td><td data-id="307">Hand-forged belt knife</td><td data-id="308" class="font-mono tabular-nums text-saffron whitespace-nowrap">$40–$150</td><td data-id="309" class="text-creamMuted">Best for authenticity — search "Norse belt knife hand forged"</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div data-id="310" class="flex items-center justify-between">
+                    <div data-id="311" class="flex items-center gap-2">
+                        <span data-id="312" class="text-xs uppercase tracking-wider text-creamMuted font-semibold">Authenticity</span>
+                        <div data-id="313" class="flex gap-1">
+                            <div data-id="314" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="315" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="316" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="317" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="318" class="auth-segment" style="background:#D4A017;"></div>
+                        </div>
+                        <span data-id="319" class="text-xs font-mono text-creamMuted">5/5</span>
+                    </div>
+                    <span data-id="320" class="text-xs font-mono text-creamMuted">$25 – $150</span>
+                </div>
+                <a data-id="321" href="https://www.etsy.com/search?q=norse+belt+knife+hand+forged" target="_blank" rel="noopener noreferrer" class="buy-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-saffron text-saffron text-sm font-semibold no-underline min-h-[44px]">
+                    <i data-id="322" data-lucide="external-link" class="w-4 h-4"></i> Browse Belt Knives
+                </a>
+            </div>
+        </article>
+
+        <!-- CARD 6: Nasal Helm -->
+        <article data-id="323" class="kit-card bg-ironCard border border-stroke rounded-xl overflow-hidden" data-category="ARMOUR" data-low="80" data-high="235">
+            <div data-id="324" class="px-5 pt-5 pb-3 border-b border-stroke">
+                <div data-id="325" class="flex items-center justify-between mb-2">
+                    <h2 data-id="326" class="text-saffron font-bold text-sm md:text-base uppercase tracking-wider">Nasal Helm (Spangenhelm)</h2>
+                    <span data-id="327" class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-russet text-cream">Armour</span>
+                </div>
+            </div>
+            <div data-id="328" class="px-5 py-4 space-y-4">
+                <div data-id="329">
+                    <h3 data-id="330" class="text-xs uppercase tracking-wider text-creamMuted font-semibold mb-1.5 flex items-center gap-1.5">
+                        <i data-id="331" data-lucide="scroll-text" class="w-3.5 h-3.5"></i> Historical Spec
+                    </h3>
+                    <p data-id="332" class="text-sm text-cream leading-relaxed">Spangenhelm style (riveted segmented plates) or single-piece nasal conical. 12th-century Norse-Gaelic context: a simple nasal helm or spangenhelm without cheek guards is most appropriate. Avoid horns (not historical). Optional mail aventail for a man of rank. 18-gauge mild steel minimum for display; 16-gauge for use.</p>
+                </div>
+                <div data-id="333" class="overflow-x-auto rounded-lg border border-stroke">
+                    <table data-id="334" class="vendor-table w-full text-left">
+                        <thead data-id="335" class="bg-ironDark">
+                            <tr data-id="336"><th data-id="337">Vendor</th><th data-id="338">Item</th><th data-id="339">Price</th><th data-id="340">Notes</th></tr>
+                        </thead>
+                        <tbody data-id="341">
+                            <tr data-id="342"><td data-id="343" class="font-medium">Deepeeka / Kult of Athena</td><td data-id="344">Norse Spangenhelm</td><td data-id="345" class="font-mono tabular-nums text-saffron whitespace-nowrap">$220</td><td data-id="346" class="text-creamMuted">18g mild steel, leather liner, knotwork — solid</td></tr>
+                            <tr data-id="347" class="bg-iron/30"><td data-id="348" class="font-medium">Deepeeka / By The Sword</td><td data-id="349">Norse Spangenhelm</td><td data-id="350" class="font-mono tabular-nums text-saffron whitespace-nowrap">$220</td><td data-id="351" class="text-creamMuted">Same item, different retailer</td></tr>
+                            <tr data-id="352"><td data-id="353" class="font-medium">Medieval Collectibles</td><td data-id="354">Spangenhelm (various)</td><td data-id="355" class="font-mono tabular-nums text-saffron whitespace-nowrap">$80–$235</td><td data-id="356" class="text-creamMuted">Wide range; Henning Spangenhelm $150 is a good mid-tier</td></tr>
+                            <tr data-id="357" class="bg-iron/30"><td data-id="358" class="font-medium">Etsy</td><td data-id="359">Medieval Spangenhelm Nasal</td><td data-id="360" class="font-mono tabular-nums text-saffron whitespace-nowrap">~$85–$150</td><td data-id="361" class="text-creamMuted">Already in your cart — good option</td></tr>
+                            <tr data-id="362"><td data-id="363" class="font-medium">Windlass</td><td data-id="364">Various nasal helms</td><td data-id="365" class="font-mono tabular-nums text-saffron whitespace-nowrap">$100–$200</td><td data-id="366" class="text-creamMuted">Reliable quality</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div data-id="367" class="flex items-center justify-between">
+                    <div data-id="368" class="flex items-center gap-2">
+                        <span data-id="369" class="text-xs uppercase tracking-wider text-creamMuted font-semibold">Authenticity</span>
+                        <div data-id="370" class="flex gap-1">
+                            <div data-id="371" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="372" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="373" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="374" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="375" class="auth-segment" style="background:#3a3a3a;"></div>
+                        </div>
+                        <span data-id="376" class="text-xs font-mono text-creamMuted">4/5</span>
+                    </div>
+                    <span data-id="377" class="text-xs font-mono text-creamMuted">$80 – $235</span>
+                </div>
+                <a data-id="378" href="https://www.kultofathena.com/category/dark-age-helmets/" target="_blank" rel="noopener noreferrer" class="buy-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-saffron text-saffron text-sm font-semibold no-underline min-h-[44px]">
+                    <i data-id="379" data-lucide="external-link" class="w-4 h-4"></i> Browse Helms
+                </a>
+            </div>
+        </article>
+
+        <!-- CARD 7: Mail Haubergeon -->
+        <article data-id="380" class="kit-card bg-ironCard border border-stroke rounded-xl overflow-hidden" data-category="ARMOUR" data-low="200" data-high="630">
+            <div data-id="381" class="px-5 pt-5 pb-3 border-b border-stroke">
+                <div data-id="382" class="flex items-center justify-between mb-2">
+                    <h2 data-id="383" class="text-saffron font-bold text-sm md:text-base uppercase tracking-wider">Mail Haubergeon</h2>
+                    <span data-id="384" class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-russet text-cream">Armour</span>
+                </div>
+            </div>
+            <div data-id="385" class="px-5 py-4 space-y-4">
+                <div data-id="386">
+                    <h3 data-id="387" class="text-xs uppercase tracking-wider text-creamMuted font-semibold mb-1.5 flex items-center gap-1.5">
+                        <i data-id="388" data-lucide="scroll-text" class="w-3.5 h-3.5"></i> Historical Spec
+                    </h3>
+                    <p data-id="389" class="text-sm text-cream leading-relaxed">Short-sleeved mail shirt reaching mid-thigh. Riveted rings — NOT butted (butted mail is not period-accurate for a warrior of rank). 16-gauge mild steel, 9mm internal ring diameter, European 4-in-1 pattern. Worn over a gambeson. Allow 8+ weeks lead time for riveted pieces. This is the most expensive single item in the kit.</p>
+                </div>
+                <div data-id="390" class="overflow-x-auto rounded-lg border border-stroke">
+                    <table data-id="391" class="vendor-table w-full text-left">
+                        <thead data-id="392" class="bg-ironDark">
+                            <tr data-id="393"><th data-id="394">Vendor</th><th data-id="395">Item</th><th data-id="396">Price</th><th data-id="397">Notes</th></tr>
+                        </thead>
+                        <tbody data-id="398">
+                            <tr data-id="399"><td data-id="400" class="font-medium">By The Sword Inc.</td><td data-id="401">Mail Haubergeon Round Ring Riveted Mild Steel</td><td data-id="402" class="font-mono tabular-nums text-saffron whitespace-nowrap">$630</td><td data-id="403" class="text-creamMuted">16g riveted, 9mm rings, mid-thigh — best period-accurate option</td></tr>
+                            <tr data-id="404" class="bg-iron/30"><td data-id="405" class="font-medium">Lord of Battles / KoA</td><td data-id="406">Flat Riveted Haubergeon Mild Steel</td><td data-id="407" class="font-mono tabular-nums text-saffron whitespace-nowrap">$270–$290</td><td data-id="408" class="text-creamMuted">Sale pricing available, comparable quality</td></tr>
+                            <tr data-id="409"><td data-id="410" class="font-medium">Lord of Battles / KoA</td><td data-id="411">Dome Riveted Half Hauberk</td><td data-id="412" class="font-mono tabular-nums text-saffron whitespace-nowrap">$200–$300</td><td data-id="413" class="text-creamMuted">Shorter cut, riveted</td></tr>
+                            <tr data-id="414" class="bg-iron/30"><td data-id="415" class="font-medium">Lord of Battles</td><td data-id="416">Butted Haubergeon</td><td data-id="417" class="font-mono tabular-nums text-saffron whitespace-nowrap">$100–$135</td><td data-id="418" class="text-creamMuted">Budget only — not period accurate for a warrior of rank</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div data-id="419" class="flex items-center justify-between">
+                    <div data-id="420" class="flex items-center gap-2">
+                        <span data-id="421" class="text-xs uppercase tracking-wider text-creamMuted font-semibold">Authenticity</span>
+                        <div data-id="422" class="flex gap-1">
+                            <div data-id="423" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="424" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="425" class="auth-segment" style="background:#3a3a3a;"></div>
+                            <div data-id="426" class="auth-segment" style="background:#3a3a3a;"></div>
+                            <div data-id="427" class="auth-segment" style="background:#3a3a3a;"></div>
+                        </div>
+                        <span data-id="428" class="text-xs font-mono text-creamMuted">2/5</span>
+                    </div>
+                    <span data-id="429" class="text-xs font-mono text-creamMuted">$200 – $630</span>
+                </div>
+                <a data-id="430" href="https://www.bytheswordinc.com/c-50-chainmail-shirts.aspx" target="_blank" rel="noopener noreferrer" class="buy-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-saffron text-saffron text-sm font-semibold no-underline min-h-[44px]">
+                    <i data-id="431" data-lucide="external-link" class="w-4 h-4"></i> Browse Chainmail
+                </a>
+            </div>
+        </article>
+
+        <!-- CARD 8: Gambeson -->
+        <article data-id="432" class="kit-card bg-ironCard border border-stroke rounded-xl overflow-hidden" data-category="ARMOUR" data-low="80" data-high="400">
+            <div data-id="433" class="px-5 pt-5 pb-3 border-b border-stroke">
+                <div data-id="434" class="flex items-center justify-between mb-2">
+                    <h2 data-id="435" class="text-saffron font-bold text-sm md:text-base uppercase tracking-wider">Gambeson (Padded Armour)</h2>
+                    <span data-id="436" class="text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-russet text-cream">Armour</span>
+                </div>
+            </div>
+            <div data-id="437" class="px-5 py-4 space-y-4">
+                <div data-id="438">
+                    <h3 data-id="439" class="text-xs uppercase tracking-wider text-creamMuted font-semibold mb-1.5 flex items-center gap-1.5">
+                        <i data-id="440" data-lucide="scroll-text" class="w-3.5 h-3.5"></i> Historical Spec
+                    </h3>
+                    <p data-id="441" class="text-sm text-cream leading-relaxed">Quilted linen or wool undergarment worn beneath mail. Long-sleeved, reaching mid-thigh. Vertical quilting in period style. Natural undyed linen or madder red/woad blue for a warrior of rank. The gambeson is essential — it absorbs impact and prevents mail abrasion. Should be worn BEFORE the haubergeon is purchased to size correctly.</p>
+                </div>
+                <div data-id="442" class="overflow-x-auto rounded-lg border border-stroke">
+                    <table data-id="443" class="vendor-table w-full text-left">
+                        <thead data-id="444" class="bg-ironDark">
+                            <tr data-id="445"><th data-id="446">Vendor</th><th data-id="447">Item</th><th data-id="448">Price</th><th data-id="449">Notes</th></tr>
+                        </thead>
+                        <tbody data-id="450">
+                            <tr data-id="451"><td data-id="452" class="font-medium">Museum Replicas</td><td data-id="453">Robin of Locksley Gambeson</td><td data-id="454" class="font-mono tabular-nums text-saffron whitespace-nowrap">$159</td><td data-id="455" class="text-creamMuted">Quilted, padded, period silhouette — solid entry</td></tr>
+                            <tr data-id="456" class="bg-iron/30"><td data-id="457" class="font-medium">GDFB / Various</td><td data-id="458">Medieval Padded Gambeson</td><td data-id="459" class="font-mono tabular-nums text-saffron whitespace-nowrap">$80–$200</td><td data-id="460" class="text-creamMuted">Search "medieval gambeson linen"; many options</td></tr>
+                            <tr data-id="461"><td data-id="462" class="font-medium">Kult of Athena</td><td data-id="463">Various gambesons</td><td data-id="464" class="font-mono tabular-nums text-saffron whitespace-nowrap">$100–$300</td><td data-id="465" class="text-creamMuted">Check their armour section</td></tr>
+                            <tr data-id="466" class="bg-iron/30"><td data-id="467" class="font-medium">Etsy artisans</td><td data-id="468">Custom linen gambeson</td><td data-id="469" class="font-mono tabular-nums text-saffron whitespace-nowrap">$150–$400</td><td data-id="470" class="text-creamMuted">Best authenticity; commission a specific colour</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div data-id="471" class="flex items-center justify-between">
+                    <div data-id="472" class="flex items-center gap-2">
+                        <span data-id="473" class="text-xs uppercase tracking-wider text-creamMuted font-semibold">Authenticity</span>
+                        <div data-id="474" class="flex gap-1">
+                            <div data-id="475" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="476" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="477" class="auth-segment" style="background:#D4A017;"></div>
+                            <div data-id="478" class="auth-segment" style="background:#3a3a3a;"></div>
+                            <div data-id="479" class="auth-segment" style="background:#3a3a3a;"></div>
+                        </div>
+                        <span data-id="480" class="text-xs font-mono text-creamMuted">3/5</span>
+                    </div>
+                    <span data-id="481" class="text-xs font-mono text-creamMuted">$80 – $400</span>
+                </div>
+                <a data-id="482" href="https://www.museumreplicas.com/armor" target="_blank" rel="noopener noreferrer" class="buy-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-saffron text-saffron text-sm font-semibold no-underline min-h-[44px]">
+                    <i data-id="483" data-lucide="external-link" class="w-4 h-4"></i> Browse Gambesons
+                </a>
+            </div>
+        </article>
+
+    </div>
+
+    <!-- BUYER'S NOTES PANEL -->
+    <section data-id="484" id="buyers-notes-w4x5" class="mb-12">
+        <div data-id="485" class="parchment-panel px-6 md:px-8 py-8">
+            <h2 data-id="486" class="text-saffron font-bold text-lg md:text-xl uppercase tracking-wider mb-6 flex items-center gap-2">
+                <i data-id="487" data-lucide="book-open" class="w-5 h-5"></i> Buyer's Notes — Authenticity Tips
+            </h2>
+            <div data-id="488" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div data-id="489" class="space-y-5">
+                    <div data-id="490">
+                        <h3 data-id="491" class="text-saffron text-sm font-bold mb-1.5 flex items-center gap-1.5">
+                            <i data-id="492" data-lucide="link" class="w-4 h-4"></i> Riveted vs. Butted Mail
+                        </h3>
+                        <p data-id="493" class="text-sm text-cream leading-relaxed">For a warrior of Somerled's rank, only riveted mail is appropriate. Butted mail is a modern shortcut — save money elsewhere, not here.</p>
+                    </div>
+                    <div data-id="494">
+                        <h3 data-id="495" class="text-saffron text-sm font-bold mb-1.5 flex items-center gap-1.5">
+                            <i data-id="496" data-lucide="gauge" class="w-4 h-4"></i> Steel Grade
+                        </h3>
+                        <p data-id="497" class="text-sm text-cream leading-relaxed">Look for 1075, 1080, or 5160 high-carbon steel in blades. Mild steel is fine for armour and display pieces.</p>
+                    </div>
+                    <div data-id="498">
+                        <h3 data-id="499" class="text-saffron text-sm font-bold mb-1.5 flex items-center gap-1.5">
+                            <i data-id="500" data-lucide="x-circle" class="w-4 h-4"></i> Avoid
+                        </h3>
+                        <p data-id="501" class="text-sm text-cream leading-relaxed">Fantasy embellishments (dragon scales, horns, unrealistic spikes), stainless steel blades (wrong period sheen), double-bit axes, cruciform crossguards that are too late-period.</p>
+                    </div>
+                </div>
+                <div data-id="502" class="space-y-5">
+                    <div data-id="503">
+                        <h3 data-id="504" class="text-saffron text-sm font-bold mb-1.5 flex items-center gap-1.5">
+                            <i data-id="505" data-lucide="check-circle" class="w-4 h-4"></i> Recommended Vendors
+                        </h3>
+                        <p data-id="506" class="text-sm text-cream leading-relaxed">Windlass Steelcrafts and Hanwei for mid-budget weapons. Lord of Battles for mail. Commission Etsy smiths for small blades and knives.</p>
+                    </div>
+                    <div data-id="507">
+                        <h3 data-id="508" class="text-saffron text-sm font-bold mb-1.5 flex items-center gap-1.5">
+                            <i data-id="509" data-lucide="list-ordered" class="w-4 h-4"></i> Purchase Order
+                        </h3>
+                        <p data-id="510" class="text-sm text-cream leading-relaxed">Gambeson first (sized to your body) → Haubergeon (sized over gambeson) → Helm → Weapons → Blades.</p>
+                    </div>
+                    <div data-id="511">
+                        <h3 data-id="512" class="text-saffron text-sm font-bold mb-1.5 flex items-center gap-1.5">
+                            <i data-id="513" data-lucide="coins" class="w-4 h-4"></i> Total Kit Note
+                        </h3>
+                        <p data-id="514" class="text-sm text-cream leading-relaxed">A fully riveted, period-correct kit runs <span data-id="515" class="font-mono text-saffron font-semibold">$1,400–$2,500+</span>. Cutting corners on mail is the main compromise most reenactors make.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer data-id="516" id="footer-y6z7" class="bg-ironDark border-t border-stroke text-center py-8 px-4">
+    <p data-id="517" class="text-creamMuted text-sm mb-2">Clan Sealgair Kit Ledger · Est. 1155 CE · The Sword and the Cauldron · Inverie, Knoydart</p>
+    <p data-id="518" class="text-creamMuted text-xs opacity-70">Made by Copilot</p>
+</footer>
+
+<script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn-g8h9');
+    const mobileMenu = document.getElementById('mobile-menu-i0j1');
+    const mobileMenuClose = document.getElementById('mobile-menu-close-k2l3');
+
+    mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.remove('hidden');
+    });
+
+    mobileMenuClose.addEventListener('click', function() {
+        mobileMenu.classList.add('hidden');
+    });
+
+    // Filter functionality
+    const filterPills = document.querySelectorAll('.filter-pill');
+    const kitCards = document.querySelectorAll('.kit-card');
+    const budgetTotal = document.getElementById('budget-total-q8r9');
+
+    function updateBudget() {
+        let totalLow = 0;
+        let totalHigh = 0;
+        kitCards.forEach(function(card) {
+            if (!card.classList.contains('hidden-card')) {
+                totalLow += parseInt(card.dataset.low, 10);
+                totalHigh += parseInt(card.dataset.high, 10);
+            }
+        });
+        budgetTotal.textContent = '$' + totalLow.toLocaleString() + ' – $' + totalHigh.toLocaleString();
+    }
+
+    function filterCards(category) {
+        kitCards.forEach(function(card) {
+            if (category === 'ALL' || card.dataset.category === category) {
+                card.classList.remove('hidden-card');
+            } else {
+                card.classList.add('hidden-card');
+            }
+        });
+        updateBudget();
+    }
+
+    filterPills.forEach(function(pill) {
+        pill.addEventListener('click', function() {
+            filterPills.forEach(function(p) { p.classList.remove('active'); });
+            pill.classList.add('active');
+            filterCards(pill.dataset.filter);
+        });
+    });
+
+    // Initialize budget total
+    updateBudget();
+</script>
+
+</body>
+</html>
